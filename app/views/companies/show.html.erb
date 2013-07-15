@@ -1,0 +1,38 @@
+<p>
+  <strong>Compnay</strong>
+  <%= @company.name %>
+</p>
+ 
+<p>
+  <strong>Description</strong>
+  <%= @company.description %>
+</p>
+
+<p>
+  <strong>Website</strong>
+  <%= @company.website %>
+</p>
+
+
+<table border="2">
+  <tr>
+    <th>User Name</th>
+    <th>Company</th>
+    <th>Department</th>
+    <th>Position</th>
+  </tr>
+ 
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.company %></td>
+      <td><%= user.dept %></td>
+      <td><%= user.position %></td>
+      <td><%= user.email %></td>
+      <td><%= link_to 'Connect', controller:"users", action: "connect", id: user.id %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Back', companies_path %>
+<%= link_to 'Edit', edit_company_path(@company) %>

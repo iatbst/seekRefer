@@ -1,0 +1,27 @@
+<p>
+  <strong>User Name</strong>
+  <%= @user.name %>
+</p>
+ 
+<p>
+  <strong>Company</strong>
+  <%= @user.company %>
+</p>
+
+<p>
+  <strong>Department</strong>
+  <%= @user.dept %>
+</p>
+
+<p>
+  <strong>Position</strong>
+  <%= @user.position %>
+</p>
+
+<p>
+  <strong>Email</strong>
+  <%= @user.email %>
+</p>
+
+<%= link_to 'Back', companies_path %>
+<%= link_to 'Edit', edit_user_path(@user) %>
