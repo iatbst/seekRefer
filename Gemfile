@@ -34,6 +34,8 @@ end
 
 gem 'bcrypt-ruby', '3.0.1'
 
+gem 'bootstrap-sass', '2.3.2.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

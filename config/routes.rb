@@ -2,6 +2,11 @@ SeekRefer::Application.routes.draw do
   
   resources :companies
   resources :users
+  root 'homes#index'
+  get 'homes' => 'homes#index'
+  
+  #user sign up page
+  match '/signup',  to: 'users#signup',            via: 'get'
   
   #email to user
   get 'user/connect/:id' => 'users#connect'

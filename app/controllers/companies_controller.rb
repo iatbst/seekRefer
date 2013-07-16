@@ -21,7 +21,6 @@ class CompaniesController < ApplicationController
   #list all company
   def index
     @companies = Company.all
-    @users = User.all
   end 
   
   #edit a company
