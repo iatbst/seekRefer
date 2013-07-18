@@ -33,8 +33,12 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     
-    @user.update(params[:user].permit(:name, :company, :dept, :position, :email))
-    redirect_to @user
+    if @user.update_attributes(user_params)
+      flash[:success] = "Profile updated"
+      redirect_to @user
+    else
+      render 'edit'
+    end
   end
   
   def destroy
@@ -47,4 +51,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     UserMailer.connect_request(@user).deliver
   end
+  
+  private
+
+    def user_params
+      params.require(:user).permit(:name, :email, :password, :company, :dept, :position,
+                                   :password_confirmation)
+    end
 end
