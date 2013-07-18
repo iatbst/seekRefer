@@ -7,9 +7,13 @@ SeekRefer::Application.routes.draw do
   
   #user sign up page
   match '/signup',  to: 'users#signup',            via: 'get'
+  match '/signin',  to: 'sessions#new',    via: 'get'
+  match '/signout', to: 'sessions#destroy', via: 'delete'
   
   #email to user
   get 'user/connect/:id' => 'users#connect'
+  
+  resources :sessions, only: [:new, :create, :destroy]
  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

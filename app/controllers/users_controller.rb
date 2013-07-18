@@ -14,7 +14,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params.require(:user).permit(:name, :company, :dept, :position, :email, :password, :password_confirmation))
     if @user.save
-      redirect_to user_path(@user)
+      sign_in @user
+      flash[:success] = "Welcome to the Sample App!"
+      redirect_to @user
     else
       render 'signup'
     end
