@@ -13,6 +13,7 @@ SeekRefer::Application.routes.draw do
   
   #email to user
   get 'user/connect/:id' => 'users#connect'
+  post 'users/create' => 'users#create'
   
   #resources :sessions, only: [:new, :create, :destroy]
  

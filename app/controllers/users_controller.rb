@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def new
+    @user = User.new
   end
   
   #sign up
@@ -14,11 +15,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params.require(:user).permit(:name, :company, :dept, :position, :email, :password, :password_confirmation))
     if @user.save
-      sign_in @user
-      flash[:success] = "Welcome to the Sample App!"
+      flash[:success] = "Add User: " + params[:user][:name] + " to DB!"
       redirect_to @user
     else
-      render 'signup'
+      render 'new'
     end
   end
   
