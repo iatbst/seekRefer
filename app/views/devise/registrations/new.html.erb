@@ -25,6 +25,15 @@
       
       <%= f.label :position %>
       <%= f.text_field :position %>
+      
+      <%= f.label :hometown, "Home Town" %>
+      <%= f.select(:hometown, ChinaCity.all.map {|h| [h.province]}, :prompt => "Select a Hometown",) %>
+
+      <%= f.label :china_school1, "China College"%>
+      <%= f.select(:china_school1, ChinaCollege.all.map {|h| [h.name]}, :prompt => "Select a School",) %>
+      
+      <%= f.label :us_school1, "US College" %>
+      <%= f.select(:us_school1, UsCollege.all.map {|h| [h.name]}, :prompt => "Select a School",) %>    
 
       <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
     <% end %>
