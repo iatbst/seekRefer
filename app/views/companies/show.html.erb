@@ -4,7 +4,7 @@
 </p>
  
 <p>
-  <strong>Description</strong>
+  <strong>About</strong>
   <%= @company.description %>
 </p>
 
@@ -20,7 +20,10 @@
     <th>Company</th>
     <th>Department</th>
     <th>Position</th>
+    <% if current_user.try(:admin?) %>
     <th>Email</th>
+    <% end %>
+    
     <th></th>
   </tr>
  
@@ -30,7 +33,9 @@
       <td><%= user.company %></td>
       <td><%= user.dept %></td>
       <td><%= user.position %></td>
+      <% if current_user.try(:admin?) %>
       <td><%= user.email %></td>
+      <% end %>
       <td><%= link_to 'Connect', controller:"users", action: "connect", id: user.id %></td>
     </tr>
   <% end %>

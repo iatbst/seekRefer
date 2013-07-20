@@ -1,4 +1,10 @@
 class UsersController < ApplicationController
+  before_filter :require_admin, except: [:show, :connect]
+  
+  def require_admin
+    redirect_to new_user_session_path unless current_user && current_user.admin?
+  end
+  
   def new
     @user = User.new
   end
@@ -48,12 +54,12 @@ class UsersController < ApplicationController
   end
   
   def connect
+    authenticate_user!
     @user = User.find(params[:id])
     UserMailer.connect_request(@user).deliver
   end
   
   private
-
     def user_params
       params.require(:user).permit(:name, :email, :password, :company, :dept, :position,
                                    :password_confirmation)

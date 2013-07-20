@@ -1,22 +1,27 @@
+<div class="row">
+  <div class="span6 offset3">
 <%= form_for :company, url: companies_path do |f| %>
-  <p>
-    <%= f.label :name %><br>
+  
+    <%= f.label :name %>
     <%= f.text_field :name %>
-  </p>
+  
  
-  <p>
-    <%= f.label :description %><br>
+  
+    <%= f.label :description %>
     <%= f.text_area :description %>
-  </p>
+  
 
-  <p>
-    <%= f.label :website %><br>
-    <%= f.text_area :website %>
-  </p>
+  
+    <%= f.label :website %>
+    <%= f.text_field :website %>
+  
    
   <p>
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-large btn-primary"%>
   </p>
 <% end %>
 
 <%= link_to 'Back', companies_path %>
+
+</div>
+</div>

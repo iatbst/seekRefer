@@ -1,20 +1,23 @@
-<%= link_to 'New company', new_company_path, class: "btn btn-primary" %>
+<%= link_to 'New Company', new_company_path, class: "btn btn-primary" %>
 
-<table <table class="table table-hover">>
+<table class="table table-hover">
   <tr>
     <th>Name</th>
-    <th>Description</th>
+    <th>About</th>
     <th>Website</th>
+    <th></th>
+    <th></th>
   </tr>
  
   <% @companies.each do |company| %>
     <tr>
-      <td><%= company.name %></td>
+    	  <td><%= link_to company.name, company_path(company) %></td>
       <td><%= company.description %></td>
       <td><%= company.website %></td>
-      <td><%= link_to 'Show', company_path(company) %></td>
+      <% if current_user.try(:admin?) %>
       <td><%= link_to 'Edit', edit_company_path(company) %></td>
  	  <td><%= link_to 'Destroy', company_path(company), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
     </tr>
   <% end %>
 </table>
