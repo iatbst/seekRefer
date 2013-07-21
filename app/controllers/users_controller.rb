@@ -52,13 +52,7 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to companies_path
   end
-  
-  def connect
-    authenticate_user!
-    @user = User.find(params[:id])
-    UserMailer.connect_request(@user).deliver
-  end
-  
+   
   private
     def user_params
       params.require(:user).permit(:name, :email, :password, :company, :dept, :position,

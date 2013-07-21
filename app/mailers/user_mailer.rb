@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "connectRequest@refer.com"
+  default from: "iatbst@gmail.com"
   
   def connect_request(user)
     @user = user

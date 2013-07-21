@@ -36,7 +36,7 @@
       <% if current_user.try(:admin?) %>
       <td><%= user.email %></td>
       <% end %>
-      <td><%= link_to 'Connect', controller:"users", action: "connect", id: user.id %></td>
+      <td><%= link_to 'Connect', controller:"connect_requests", action: "send", id: user.id %></td>
     </tr>
   <% end %>
 </table>
