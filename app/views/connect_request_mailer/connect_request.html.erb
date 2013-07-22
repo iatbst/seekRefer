@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>You have a connect request from <%= @user.name %></h1>
+    <h1>You have a connect request from <%= @from.name %></h1>
     <p>
       <%= link_to "Accept", url_for(controller: "connect_requests", action: "accept_request", only_path: false, :token => @token) %>
     </p>

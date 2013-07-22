@@ -15,7 +15,9 @@ SeekRefer::Application.routes.draw do
   get 'connect_request/send_request/:id' => 'connect_requests#send_request'
   get 'connect_request/accept_request' => 'connect_requests#accept_request'
   get 'connect_request/ignore_request' => 'connect_requests#ignore_request'
+  get 'connect_request/disconnect/:id' => 'connect_requests#disconnect'
   post 'users/create' => 'users#create'
+  get 'connections' => 'connections#index'
   
   #resources :sessions, only: [:new, :create, :destroy]
  

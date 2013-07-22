@@ -59,7 +59,15 @@ ActiveRecord::Schema.define(version: 20130722010455) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
+    t.string   "name"
+    t.string   "company"
+    t.string   "dept"
+    t.string   "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "remember_token"
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -69,10 +77,6 @@ ActiveRecord::Schema.define(version: 20130722010455) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "name"
-    t.string   "company"
-    t.string   "dept"
-    t.string   "position"
     t.boolean  "admin"
     t.string   "hometown"
     t.string   "china_school1"
@@ -82,6 +86,7 @@ ActiveRecord::Schema.define(version: 20130722010455) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["name"], name: "index_users_on_name", unique: true, using: :btree
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
 end

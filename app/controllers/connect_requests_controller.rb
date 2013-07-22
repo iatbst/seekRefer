@@ -2,14 +2,20 @@ class ConnectRequestsController < ApplicationController
   
   def send_request
     authenticate_user!
+    #first check out if request exist in database
     @user = User.find(params[:id])
+    if ConnectRequest.exists?(from: current_user.email, to: @user.email)
+      @message = "Connect request already sent, Can't send twice !"
+      return
+    end
+    
     @token = generate_token
-    ConnectRequestMailer.connect_request(@user, @token).deliver
+    ConnectRequestMailer.connect_request(@user, @token, current_user).deliver
     
     #save request to table
     @request = ConnectRequest.new(from: current_user.email, to: @user.email, token: @token, accepted: false)
     @request.save
-
+    @message = "Connect request send to " + @user.name  
   end
   
   # handle connect accept 
@@ -33,6 +39,13 @@ class ConnectRequestsController < ApplicationController
   
   def ignore_request
     #if receive ignore, DO NOTHING
+  end
+  
+  def disconnect
+    @user = User.find(params[:id])
+    Connect.where("(connects.to = ? AND connects.from = ?) OR (connects.from = ? AND connects.to = ?)", 
+                  @user.email, current_user.email, current_user.email, @user.email).destroy_all
+  
   end
   
   private 
