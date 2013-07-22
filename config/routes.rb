@@ -12,7 +12,9 @@ SeekRefer::Application.routes.draw do
   #match '/signout', to: 'sessions#destroy', via: 'delete'
   
   #email to user
-  get 'connect_request/send/:id' => 'connect_requests#send'
+  get 'connect_request/send_request/:id' => 'connect_requests#send_request'
+  get 'connect_request/accept_request' => 'connect_requests#accept_request'
+  get 'connect_request/ignore_request' => 'connect_requests#ignore_request'
   post 'users/create' => 'users#create'
   
   #resources :sessions, only: [:new, :create, :destroy]
