@@ -35,7 +35,7 @@
       <%= f.label :us_school1, "海外毕业院校" %>
       <%= f.select(:us_school1, UsCollege.all.map {|h| [h.name]},{:prompt => "选择院校"},{:class => 'selectpicker'}) %> <br /><br />   
 
-      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+      <%= f.submit "创建", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
 </div>
