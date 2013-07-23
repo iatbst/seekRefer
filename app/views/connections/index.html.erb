@@ -1,14 +1,11 @@
-This is all my connections!
-
 <table class="table table-hover">
   <tr>
-    <th>User Name</th>
-    <th>Company</th>
-    <th>Department</th>
-    <th>Position</th>
-    <% if current_user.try(:admin?) %>
-    <th>Email</th>
-    <% end %>
+    <th>用户名</th>
+    <th>公司</th>
+    <th>部门</th>
+    <th>职位</th>
+    <th>邮箱</th>
+    
     
     <th></th>
   </tr>
@@ -19,9 +16,7 @@ This is all my connections!
       <td><%= user.company %></td>
       <td><%= user.dept %></td>
       <td><%= user.position %></td>
-      <% if current_user.try(:admin?) %>
       <td><%= user.email %></td>
-      <% end %>
       <td><%= link_to 'Disconnect', controller:"connect_requests", action:"disconnect", id:user.id, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>

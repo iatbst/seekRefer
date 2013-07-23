@@ -1,27 +1,41 @@
 <p>
-  <strong>User Name</strong>
+  <strong>用户名</strong>
   <%= @user.name %>
 </p>
  
 <p>
-  <strong>Company</strong>
+  <strong>公司</strong>
   <%= @user.company %>
 </p>
 
 <p>
-  <strong>Department</strong>
+  <strong>部门</strong>
   <%= @user.dept %>
 </p>
 
 <p>
-  <strong>Position</strong>
+  <strong>职位</strong>
   <%= @user.position %>
 </p>
 
 <p>
-  <strong>Email</strong>
+  <strong>邮箱</strong>
   <%= @user.email %>
 </p>
 
-<%= link_to 'Back', companies_path %>
-<%= link_to 'Edit', edit_user_path(@user) %>
+<p>
+  <strong>家乡</strong>
+  <%= @user.hometown %>
+</p>
+
+<p>
+  <strong>国内毕业院校</strong>
+  <%= @user.china_school1 %>
+</p>
+
+<p>
+  <strong>海外毕业院校</strong>
+  <%= @user.us_school1 %>
+</p>
+
+<%= link_to '更新', edit_user_registration_path %>

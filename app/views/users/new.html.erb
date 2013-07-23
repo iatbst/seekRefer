@@ -3,28 +3,28 @@
 <%= form_for :user, url:users_create_path do |f| %>
      <%= render 'shared/error_messages' %>
 
-      <%= f.label :name, "User Name"%>
+      <%= f.label :name, "用户名"%>
       <%= f.text_field :name, :autofocus => true %>
 
-      <%= f.label :email %>
+      <%= f.label :email , "邮箱"%>
       <%= f.text_field :email %>
 
-  	  <%= f.label :password %>
+  	  <%= f.label :password , "密码"%>
       <%= f.password_field :password %>
 
-      <%= f.label :password_confirmation %>
+      <%= f.label :password_confirmation, "确认密码" %>
       <%= f.password_field :password_confirmation %>
       
-      <%= f.label :company %>
+      <%= f.label :company , "公司"%>
       <%= f.text_field :company %>
       
-      <%= f.label :dept, "Department" %>
+      <%= f.label :dept, "部门" %>
       <%= f.text_field :dept %>
       
-      <%= f.label :position %>
+      <%= f.label :position , "职位"%>
       <%= f.text_field :position %>
 
-      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+      <%= f.submit "创建", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
 </div>

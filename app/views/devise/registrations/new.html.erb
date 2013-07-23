@@ -1,47 +1,39 @@
-<script>
-$(document).ready(function() {
-  $('.selectpicker').selectpicker({
-  	size:4
-  });
-});
-</script>
-
-<h1>Sign up</h1>
+<h1>注册</h1>
 
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
      <%= devise_error_messages! %>
 
-      <%= f.label :name, "User Name"%>
+      <%= f.label :name, "用户名"%>
       <%= f.text_field :name, :autofocus => true %>
 
-      <%= f.label :email %>
+      <%= f.label :email, "邮箱"%>
       <%= f.text_field :email %>
 
-  	  <%= f.label :password %>
+  	  <%= f.label :password,  "密码"%>
       <%= f.password_field :password %>
 
-      <%= f.label :password_confirmation %>
+      <%= f.label :password_confirmation ,  "确认密码"%>
       <%= f.password_field :password_confirmation %>
       
-      <%= f.label :company %>
+      <%= f.label :company ,"公司"%>
       <%= f.text_field :company %>
       
-      <%= f.label :dept, "Department" %>
+      <%= f.label :dept, "部门" %>
       <%= f.text_field :dept %>
       
-      <%= f.label :position %>
+      <%= f.label :position, "职位" %>
       <%= f.text_field :position %>
       
-      <%= f.label :hometown, "Home Town" %>
-      <%= f.select(:hometown, ChinaCity.all.map {|h| [h.province]},{:prompt => "Select your hometown"},{:class => 'selectpicker'}) %>
+      <%= f.label :hometown, "家乡" %>
+      <%= f.select(:hometown, ChinaCity.all.map {|h| [h.province]},{:prompt => "选择家乡"},{:class => 'selectpicker'}) %>
 
-      <%= f.label :china_school1, "China College"%>
-      <%= f.select(:china_school1, ChinaCollege.all.map {|h| [h.name]},{:prompt => "Select college in China"},{:class => 'selectpicker'}) %>
+      <%= f.label :china_school1, "国内毕业院校"%>
+      <%= f.select(:china_school1, ChinaCollege.all.map {|h| [h.name]},{:prompt => "选择院校"},{:class => 'selectpicker'}) %>
       
-      <%= f.label :us_school1, "US College" %>
-      <%= f.select(:us_school1, UsCollege.all.map {|h| [h.name]},{:prompt => "Select college in US"},{:class => 'selectpicker'}) %> <br /><br />   
+      <%= f.label :us_school1, "海外毕业院校" %>
+      <%= f.select(:us_school1, UsCollege.all.map {|h| [h.name]},{:prompt => "选择院校"},{:class => 'selectpicker'}) %> <br /><br />   
 
       <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
     <% end %>

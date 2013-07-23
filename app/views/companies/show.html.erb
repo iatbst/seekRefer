@@ -1,45 +1,39 @@
 <p>
-  <strong>Compnay</strong>
+  <strong>公司</strong>
   <%= @company.name %>
 </p>
  
 <p>
-  <strong>About</strong>
+  <strong>关于</strong>
   <%= @company.description %>
 </p>
 
 <p>
-  <strong>Website</strong>
+  <strong>网址</strong>
   <%= @company.website %>
 </p>
 
 
 <table class="table table-hover">
   <tr>
-    <th>User Name</th>
-    <th>Company</th>
-    <th>Department</th>
-    <th>Position</th>
-    <% if current_user.try(:admin?) %>
-    <th>Email</th>
-    <% end %>
-    
+    <th>用户名</th>
+    <th>部门</th>
+    <th>职位</th>  
     <th></th>
   </tr>
  
   <% @users.each do |user| %>
     <tr>
       <td><%= user.name %></td>
-      <td><%= user.company %></td>
       <td><%= user.dept %></td>
       <td><%= user.position %></td>
       <% if current_user.try(:admin?) %>
       <td><%= user.email %></td>
       <% end %>
-      <td><%= link_to 'Connect', :controller => "connect_requests", :action => "send_request", :id => user.id %></td>
+      <td><%= link_to '联系请求', :controller => "connect_requests", :action => "send_request", :id => user.id %></td>
     </tr>
   <% end %>
 </table>
 
-<%= link_to 'Back', companies_path %>
+<%= link_to '公司列表', companies_path %>
 

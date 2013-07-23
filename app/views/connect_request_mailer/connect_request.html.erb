@@ -4,13 +4,12 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>You have a connect request from <%= @from.name %></h1>
+    <h1>您收到  <%= @from.name %> 建立联系请求</h1>
     <p>
-      <%= link_to "Accept", url_for(controller: "connect_requests", action: "accept_request", only_path: false, :token => @token) %>
+      <%= link_to "接受", url_for(controller: "connect_requests", action: "accept_request", only_path: false, :token => @token) %>
     </p>
     <p>
-      <%= link_to "Ignore", url_for(controller: "connect_requests", action: "ignore_request", only_path: false, :token => @token)%>
+      <%= link_to "忽略", url_for(controller: "connect_requests", action: "ignore_request", only_path: false, :token => @token)%>
     </p>
-    <p>Thanks for joining and have a great day!</p>
   </body>
 </html>

@@ -46,6 +46,7 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    hashie (2.0.5)
     hike (1.2.3)
     i18n (0.6.4)
     jbuilder (1.4.2)
@@ -62,6 +63,9 @@ GEM
     minitest (4.7.5)
     multi_json (1.7.7)
     mysql2 (0.3.11)
+    omniauth (1.1.4)
+      hashie (>= 1.2, < 3)
+      rack
     orm_adapter (0.4.0)
     polyglot (0.3.3)
     rack (1.5.2)
@@ -127,6 +131,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   mysql2
+  omniauth
   rails (= 4.0.0)
   sass-rails (~> 4.0.0)
   sdoc
