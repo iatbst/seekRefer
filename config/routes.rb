@@ -18,7 +18,10 @@ SeekRefer::Application.routes.draw do
   get 'connect_request/disconnect/:id' => 'connect_requests#disconnect'
   post 'users/create' => 'users#create'
   get 'connections' => 'connections#index'
+
   
+  get 'refer_requests/send_request' => 'refer_requests#send_request'
+  post 'refer_requests/recv_request' => 'refer_requests#recv_request'
   #resources :sessions, only: [:new, :create, :destroy]
  
   # The priority is based upon order of creation: first created -> highest priority.

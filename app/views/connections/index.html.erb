@@ -2,13 +2,7 @@
 
 
 jQuery(document).ready(function($) {
-  $.facebox.settings.closeImage = 'app/assets/images/closelabel.png'
-  $.facebox.settings.loadingImage = '/Users/jyang/Projects/seekRefer/app/assets/images/loading.gif'
-  
-  $('a[rel*=facebox]').facebox({
-  	closeImage : '/Users/jyang/Projects/seekRefer/app/assets/images/closelabel.png',
-  	loadingImage : '/Users/jyang/Projects/seekRefer/app/assets/images/loading.gif'
-  })
+  $('a[rel*=facebox]').facebox()
 })
 
 </script>
@@ -31,7 +25,7 @@ jQuery(document).ready(function($) {
       <td><%= user.dept %></td>
       <td><%= user.position %></td>
       <td><%= user.email %></td>
-      <td><%= link_to '求推荐', "#", {:rel => "facebox"} %></td>
+      <td><%= link_to '求推荐', {controller:"refer_requests", action:"send_request", id:user.id}, :rel => "facebox" %></td>
       <td><%= link_to 'Disconnect', controller:"connect_requests", action:"disconnect", id:user.id, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
