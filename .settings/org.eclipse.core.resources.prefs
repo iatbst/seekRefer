@@ -12,6 +12,7 @@ encoding//app/views/devise/shared/_links.erb=UTF-8
 encoding//app/views/homes/index.html.erb=UTF-8
 encoding//app/views/layouts/_footer.html.erb=UTF-8
 encoding//app/views/layouts/_header.html.erb=UTF-8
+encoding//app/views/layouts/application.html.erb=UTF-8
 encoding//app/views/users/edit.html.erb=UTF-8
 encoding//app/views/users/index.html.erb=UTF-8
 encoding//app/views/users/new.html.erb=UTF-8

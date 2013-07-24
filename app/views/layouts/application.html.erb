@@ -9,6 +9,9 @@
   </head>
   <body>
     <%= render 'layouts/header' %>
+    <div class="main_page_company_logos">
+      <%= yield :company_logo %>
+    </div>
     <div class="container">
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>

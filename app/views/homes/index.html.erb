@@ -1,25 +1,38 @@
+<% content_for :company_logo do %>
+
 <% provide(:title, 'Home') %>
 
 <head>
 </head>
 
 <body>
-	<div id="myCarousel" class="carousel slide">
-    	<ol class="carousel-indicators">
-    		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    		<li data-target="#myCarousel" data-slide-to="1"></li>
-    		<li data-target="#myCarousel" data-slide-to="2"></li>
-    	</ol>
-    <!-- Carousel items -->
-    	<div class="carousel-inner">
-    		<div class="active item">…</div>
-    		<div class="item">…</div>
-    		<div class="item">…</div>
-    	</div>
-    <!-- Carousel nav -->
-    	<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-    	<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+	<div>
+		<div id="myCarousel" class="carousel slide" data-interval="5000">
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+			</ol>
+
+			<!-- Carousel items -->
+			<div class="carousel-inner">
+				<div class="active item"><%= image_tag("google-logo.png", :id => "google_logo") %></div>
+				<div class="item"><%= image_tag("twitter-logo.png", :id => "twitter_logo") %></div>
+				<div class="item"><%= image_tag("facebook-logo.png", :id => "facebook_logo") %></div>
+			</div>
+			<div class="search-area">		
+				<form class="form-search">
+					<input type="text" class="input-xlarge search-query">
+					<button type="submit" class="btn">Search</button>
+				</form>
+			</div>
+			<!-- Carousel nav -->
+			<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+			<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+		</div>
     </div>
 		<h>网站建设中.....</h>
 </body>
+
+<% end %>
 
