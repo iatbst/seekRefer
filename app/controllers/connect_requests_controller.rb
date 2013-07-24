@@ -9,6 +9,7 @@ class ConnectRequestsController < ApplicationController
       return
     end
     
+    #send mail
     @token = generate_token
     ConnectRequestMailer.connect_request(@user, @token, current_user).deliver
     

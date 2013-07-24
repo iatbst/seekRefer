@@ -1,0 +1,2 @@
+module ReferRequestsHelper
+end
