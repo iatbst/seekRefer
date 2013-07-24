@@ -1,3 +1,17 @@
+<script type="text/javascript">
+
+
+jQuery(document).ready(function($) {
+  $.facebox.settings.closeImage = 'app/assets/images/closelabel.png'
+  $.facebox.settings.loadingImage = '/Users/jyang/Projects/seekRefer/app/assets/images/loading.gif'
+  
+  $('a[rel*=facebox]').facebox({
+  	closeImage : '/Users/jyang/Projects/seekRefer/app/assets/images/closelabel.png',
+  	loadingImage : '/Users/jyang/Projects/seekRefer/app/assets/images/loading.gif'
+  })
+})
+
+</script>
 <table class="table table-hover">
   <tr>
     <th>用户名</th>
@@ -17,6 +31,7 @@
       <td><%= user.dept %></td>
       <td><%= user.position %></td>
       <td><%= user.email %></td>
+      <td><%= link_to '求推荐', "#", {:rel => "facebox"} %></td>
       <td><%= link_to 'Disconnect', controller:"connect_requests", action:"disconnect", id:user.id, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
