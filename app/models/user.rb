@@ -5,5 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :token_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable, :timeoutable, :omniauthable
  
+  #Paperclip
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :small => "100x100>", :thumb => "50x50>" }
     
 end
