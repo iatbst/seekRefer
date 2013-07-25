@@ -1,4 +1,5 @@
 class ReferRequestsController < ApplicationController
+  layout 'application', except: :send_request, only: :recv_request
   def send_request
     @to = User.find(params[:id])
   end
