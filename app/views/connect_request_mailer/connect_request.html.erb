@@ -2,14 +2,170 @@
 <html>
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+      <link href='http://twitter.github.com/bootstrap/assets/css/bootstrap.css' rel='stylesheet' />
   </head>
-  <body>
-    <h1>您收到  <%= @from.name %> 建立联系请求</h1>
-    <p>
-      <%= link_to "接受", url_for(controller: "connect_requests", action: "accept_request", only_path: false, :token => @token) %>
-    </p>
-    <p>
-      <%= link_to "忽略", url_for(controller: "connect_requests", action: "ignore_request", only_path: false, :token => @token)%>
-    </p>
-  </body>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" bgcolor="#f2f2f2">
+
+	<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f2f2f2">
+
+		<tr>
+
+			<td valign="top" align="middle">
+			<table width="551" border="0" cellspacing="0" cellpadding="0">
+
+				<tr>
+
+					<td align="left" bgcolor="#ffffff" style="BORDER-RIGHT: #9c9c9c 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #9c9c9c 1px solid; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; BORDER-LEFT: #9c9c9c 1px solid; PADDING-TOP: 5px; BORDER-BOTTOM: #9c9c9c 1px solid"
+
+					>
+					<div style="BORDER-RIGHT: #424242 7px solid; BORDER-TOP: #424242 7px solid; BORDER-LEFT: #424242 7px solid; BORDER-BOTTOM: #424242 7px solid"
+
+					>
+
+						<table width="525" border="0" cellspacing="0" cellpadding="0">
+
+							<tr>
+
+								<td style="PADDING-RIGHT: 20px; PADDING-LEFT: 20px; PADDING-BOTTOM: 20px; PADDING-TOP: 25px"
+
+								>
+								<table width="485" border="0" cellspacing="0" cellpadding="0">
+
+									<tr>
+
+										<td><%= image_tag attachments['logo.png'].url %></td>
+
+										<td align="right" valign="center" style="FONT-SIZE: 18px; COLOR: #acabab; FONT-FAMILY: Arial, Helvetica, sans-serif"
+
+										>海外存知己</td>
+
+									</tr>
+
+								</table></td>
+
+							</tr>
+
+							<tr>
+
+								<td>
+								<div style="BORDER-TOP: #d6d6d6 1px solid; PADDING-BOTTOM: 3px; PADDING-TOP: 3px; BORDER-BOTTOM: #d6d6d6 1px solid"
+
+								>
+
+									<div style="BACKGROUND-COLOR: #424242">
+
+										<table height="19" border="0" cellspacing="0" cellpadding="0">
+
+											<tr>
+											</tr>
+
+										</table>
+
+									</div>
+
+								</div></td>
+
+							</tr>
+
+							<tr>
+
+								<td>
+								<table width="525" border="0" cellspacing="0" cellpadding="0">
+
+									<tr>
+
+										<td style="PADDING-BOTTOM: 3px; BORDER-BOTTOM: #d6d6d6 1px solid"
+
+										>
+										<table width="525" border="0" cellspacing="0" cellpadding="0">
+
+											<tr>
+
+												<td width="100" style="PADDING-RIGHT: 1px; PADDING-LEFT: 1px; PADDING-BOTTOM: 0px; PADDING-TOP: 1px"
+
+												valign="top"><%= image_tag attachments['avatar.png'].url %></td>
+
+												<td style="PADDING-RIGHT: 20px; PADDING-LEFT: 20px; FONT-SIZE: 12px; PADDING-BOTTOM: 0px; COLOR: #666666; LINE-HEIGHT: 17px; PADDING-TOP: 20px; FONT-FAMILY: Arial, Helvetica, sans-serif"
+
+												valign="top" bgcolor="#f6f6f6"
+
+												>
+												<p style="FONT-SIZE: 13px; MARGIN: 0px 0px 8px; COLOR: #555555">
+													<b>家乡：<%= @from.hometown%></b><br>
+													<b>国内毕业学校：<%= @from.china_school1%></b><br>
+													<b> 海外毕业学校：<%= @from.us_school1%></b><br>
+													<b> 目前公司：<%= @from.company%></b><br>
+												</p>
+												</td>
+
+											</tr>
+
+										</table></td>
+
+									</tr>
+
+									<tr>
+
+										<td style="PADDING-RIGHT: 20px; PADDING-LEFT: 20px; FONT-SIZE: 14px; PADDING-BOTTOM: 20px; COLOR: #333333; LINE-HEIGHT: 20px; PADDING-TOP: 20px; FONT-FAMILY: Arial, Helvetica, sans-serif"
+
+										>
+				
+										<p style="MARGIN: 0px 0px 15px">
+
+											<center>您收到  <%= @from.name %> 建立联系请求</center>
+											<br />
+											
+		<table width="100%" border="0" cellspacing="40" cellpadding="0">
+			<tr>	
+			<td width="25%"></td>								
+			<td width="25%"><table style="float: left" cellspacing="0" cellpadding="0"> <tr> 
+<td align="center" width="60" height="30" bgcolor="#000091" style="-webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; color: #ffffff; display: block;">
+<a href="<%= url_for(controller: "connect_requests", action: "accept_request", only_path: false, :token => @token) %>" style="color: #ffffff; font-size:16px; font-weight: bold; font-family: Helvetica, Arial, sans-serif; text-decoration: none; line-height:30px; width:100%; display:inline-block">接受</a>
+</td> 
+</tr> </table></td>
+
+<td>
+<table width="25%" style="float: left" cellspacing="0" cellpadding="0"> <tr> 
+<td align="center" width="60" height="30" bgcolor="#000091" style="-webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; color: #ffffff; display: block;">
+<a href="<%= url_for(controller: "connect_requests", action: "ignore_request", only_path: false, :token => @token) %>" style="color: #ffffff; font-size:16px; font-weight: bold; font-family: Helvetica, Arial, sans-serif; text-decoration: none; line-height:30px; width:100%; display:inline-block">忽略</a>
+</td><td></td> 
+
+</tr> </table></td></tr></table>
+
+									
+								
+
+										</p></td>
+
+									</tr>
+
+								</table></td>
+
+							</tr>
+
+							<tr>
+
+								<td style="PADDING-RIGHT: 0px; BORDER-TOP: #d6d6d6 1px solid; PADDING-LEFT: 20px; FONT-SIZE: 12px;  PADDING-BOTTOM: 15px; COLOR: #666666; LINE-HEIGHT: 17px; PADDING-TOP: 15px; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #f6f6f6"
+
+								><b>海外华人求职网</b>
+						
+								<a target="_blank" href="0.0.0.0:3000/" style="COLOR: #4089bb">seekrefer.com</a></td>
+
+							</tr>
+
+						</table>
+
+					</div></td>
+
+				</tr>
+
+			</table></td>
+
+		</tr>
+
+	</table>
+
+</body>
+
 </html>

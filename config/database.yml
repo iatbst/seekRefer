@@ -14,7 +14,11 @@ development:
   database: seekRefer_development
   pool: 5
   username: root
+<<<<<<< HEAD
   password:
+=======
+  password: 
+>>>>>>> 5d7538eff7b3e3d0a7dcf5b054999dadcc4f8cd2
   socket: /tmp/mysql.sock
 
 # Warning: The database defined as "test" will be erased and
