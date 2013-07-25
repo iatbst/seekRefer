@@ -30,6 +30,8 @@ SeekRefer::Application.configure do
   
   Paperclip.options[:command_path] = "/usr/local/bin/"
   
+  config.serve_static_assets = true
+  
 config.action_mailer.delivery_method = :smtp
 config.action_mailer.smtp_settings = {
   :address              => "smtp.gmail.com",

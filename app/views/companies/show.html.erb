@@ -1,18 +1,32 @@
-<p>
-  <strong>公司</strong>
-  <%= @company.name %>
-</p>
- 
-<p>
-  <strong>关于</strong>
-  <%= @company.description %>
-</p>
+<div class="container-fluid">
+    <div class="row-fluid">
+    	<div class="span5">
+    		<%= image_tag @company.logo.url(:medium) %>
+    	</div>
+    	<div class="span5">
+    		<!--Body content-->
+    		<div class="row-fluid">
+  				<div class="span2">公司</div>
+  				<div class="span8"><%= @company.name %></div>
+			</div>
+			<div class="row-fluid">
+  				<div class="span2">关于</div>
+  				<div class="span8"><%= @company.description %></div>
+			</div>
+			<div class="row-fluid">
+  				<div class="span2">网址</div>
+  				<div class="span8"><%= @company.website %></div>
+			</div>   	
+    			
+    	</div>
+    </div>
+</div>
 
-<p>
-  <strong>网址</strong>
-  <%= @company.website %>
-</p>
 
+<br />
+<br />
+<br />
+<br />
 
 <table class="table table-hover">
   <tr>

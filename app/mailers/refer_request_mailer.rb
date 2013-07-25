@@ -6,6 +6,7 @@ class ReferRequestMailer < ActionMailer::Base
     @from = from
     @intro = intro
     attachments[file] = File.read('users/' + from.name + '/' + file)
+    attachments.inline['avatar.png'] = File.read(@from.avatar.path(:thumb))
     mail(to: @to.email, subject: '您收到推荐请求')
   end
 end
