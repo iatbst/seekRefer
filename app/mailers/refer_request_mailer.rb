@@ -5,8 +5,14 @@ class ReferRequestMailer < ActionMailer::Base
     @to = to
     @from = from
     @intro = intro
+    
+    if @from.avatar.path(:small).nil?
+      avatarPath = "public/images/users/defaultAvatar_small.png"
+    else
+      avatarPath = @from.avatar.path(:small)
+    end
+    attachments.inline['avatar.png'] = File.read(avatarPath)
     attachments[file] = File.read('users/' + from.name + '/' + file)
-    attachments.inline['avatar.png'] = File.read(@from.avatar.path(:small))
     attachments.inline['logo.png'] = File.read("public/images/others/seekRefer.jpg")
     mail(to: @to.email, subject: '您收到推荐请求')
   end
