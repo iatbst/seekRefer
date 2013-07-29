@@ -22,6 +22,10 @@ SeekRefer::Application.routes.draw do
   
   get 'refer_requests/send_request' => 'refer_requests#send_request'
   post 'refer_requests/recv_request' => 'refer_requests#recv_request'
+  get 'refer_request/view_profile' => 'refer_requests#view_profile'
+  get 'refer_request/ignore_request' => 'refer_requests#ignore_request'
+ 
+  
   #resources :sessions, only: [:new, :create, :destroy]
  
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  
+  layout 'application', except: :index
   #new company 
   def new 
     

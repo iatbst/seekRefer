@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130724211559) do
+ActiveRecord::Schema.define(version: 20130729011759) do
 
   create_table "china_cities", force: true do |t|
     t.string   "province"
@@ -51,6 +51,15 @@ ActiveRecord::Schema.define(version: 20130724211559) do
   create_table "connects", force: true do |t|
     t.string   "from"
     t.string   "to"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "refer_requests", force: true do |t|
+    t.string   "from"
+    t.string   "to"
+    t.string   "token"
+    t.boolean  "accepted"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

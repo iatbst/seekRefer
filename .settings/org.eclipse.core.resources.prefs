@@ -17,6 +17,7 @@ encoding//app/views/layouts/application.html.erb=UTF-8
 encoding//app/views/refer_request_mailer/refer_request.html.erb=UTF-8
 encoding//app/views/refer_requests/recv_request.html.erb=UTF-8
 encoding//app/views/refer_requests/send_request.html.erb=UTF-8
+encoding//app/views/refer_requests/view_profile.html.erb=UTF-8
 encoding//app/views/users/edit.html.erb=UTF-8
 encoding//app/views/users/index.html.erb=UTF-8
 encoding//app/views/users/new.html.erb=UTF-8

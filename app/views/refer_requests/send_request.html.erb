@@ -1,11 +1,12 @@
-<div class="row">
+
+<div class="container">
   <div class="span6 offset3">
 <%= form_for :refer_request, url:refer_requests_recv_request_path  do |f| %>
   
 	  <%= hidden_field_tag :id, @to.id %>
 	  
       <%= f.label :intro, "介绍自己"%>
-      <%= f.text_area :intro, :autofocus => true %>
+      <%= f.text_area :intro, :autofocus => true%>
 
 	  <%= f.label :resume, "上传简历"%>
       <%= f.file_field :resume %>
