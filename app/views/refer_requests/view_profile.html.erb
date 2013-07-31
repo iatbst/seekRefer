@@ -24,6 +24,10 @@
 </table>
 
 <iframe src="<%= '/users/' + @applicant.name + '/resume.pdf' %>" width="600" height="675"></iframe>
-
-
+<br />
+<br />
+<br />
+<%= link_to "愿意推荐", {controller: "refer_cases", action: "create", id: @applicant}, class: "btn btn-primary"%>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%= link_to "拒绝推荐", {controller: "refer_cases", action: "show_referrer"}, class: "btn btn-primary"%>
 

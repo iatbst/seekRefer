@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//app/controllers/refer_cases_controller.rb=UTF-8
 encoding//app/mailers/refer_request_mailer.rb=UTF-8
 encoding//app/views/companies/edit.html.erb=UTF-8
 encoding//app/views/companies/index.html.erb=UTF-8
@@ -14,6 +15,8 @@ encoding//app/views/homes/index.html.erb=UTF-8
 encoding//app/views/layouts/_footer.html.erb=UTF-8
 encoding//app/views/layouts/_header.html.erb=UTF-8
 encoding//app/views/layouts/application.html.erb=UTF-8
+encoding//app/views/refer_cases/show_referral.html.erb=UTF-8
+encoding//app/views/refer_cases/show_referrer.html.erb=UTF-8
 encoding//app/views/refer_request_mailer/refer_request.html.erb=UTF-8
 encoding//app/views/refer_requests/recv_request.html.erb=UTF-8
 encoding//app/views/refer_requests/send_request.html.erb=UTF-8

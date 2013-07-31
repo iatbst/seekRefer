@@ -24,6 +24,13 @@ SeekRefer::Application.routes.draw do
   post 'refer_requests/recv_request' => 'refer_requests#recv_request'
   get 'refer_request/view_profile' => 'refer_requests#view_profile'
   get 'refer_request/ignore_request' => 'refer_requests#ignore_request'
+  
+  #refer case
+  get 'refer_cases/show_referrer' => 'refer_cases#show_referrer'
+  get 'refer_cases/show_referral' => 'refer_cases#show_referral'
+  get 'refer_cases/create/:id' => 'refer_cases#create'
+  get 'refer_cases/edit' => 'refer_cases#edit'
+  get 'refer_cases/destroy' => 'refer_cases#destroy'
  
   
   #resources :sessions, only: [:new, :create, :destroy]

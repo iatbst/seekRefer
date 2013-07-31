@@ -1,0 +1,24 @@
+
+<table class="table table-hover">
+  <tr>
+    <th>推荐人</th>
+    <th>被推荐人</th>
+    <th>公司</th>
+    <th>状态</th>
+  </tr>
+  
+  
+  <% @cases.each do |case_| %>
+  	<% company = User.find_by_email(case_.referrer).company%>
+  	<% referrer = User.find_by_email(case_.referrer).name%>
+  	<% referral = User.find_by_email(case_.referral).name%>
+    <tr>
+      <td><%= referrer %></td>
+      <td><%= referral %></td>
+      <td><%= company %></td>
+      <td><%= case_.status %></td>
+      <td><%= link_to '更新', refer_cases_edit_path %></td>
+ 	  <td><%= link_to '删除', refer_cases_destroy_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
