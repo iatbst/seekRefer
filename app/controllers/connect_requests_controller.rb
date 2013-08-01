@@ -4,7 +4,7 @@ class ConnectRequestsController < ApplicationController
     authenticate_user!
     #first check out if request exist in database
     @user = User.find(params[:id])
-    if ConnectRequest.exists?(from: current_user.email, to: @user.email)
+    if ConnectRequest.exists?(from_id: current_user.id, to_id: @user.id)
       @message = "Connect request already sent, Can't send twice !"
       return
     end
@@ -14,7 +14,7 @@ class ConnectRequestsController < ApplicationController
     ConnectRequestMailer.connect_request(@user, @token, current_user).deliver
     
     #save request to table
-    @request = ConnectRequest.new(from: current_user.email, to: @user.email, token: @token, accepted: false)
+    @request = ConnectRequest.new(from_id: current_user.id, to_id: @user.id, token: @token, accepted: false)
     @request.save
     @message = "Connect request send to " + @user.name  
   end
@@ -25,12 +25,12 @@ class ConnectRequestsController < ApplicationController
     if (request = ConnectRequest.find_by_token(params[:token]) )
       if(request.accepted == false)
         request.update(:accepted => true)
-        connect1 = Connect.new(:from => request.from, :to => request.to)
-        connect2 = Connect.new(:from => request.to, :to => request.from)
+        connect1 = Connect.new(:from_id => request.from.id, :to_id => request.to.id)
+        connect2 = Connect.new(:from_id => request.to.id, :to_id => request.from.id)
         connect1.save
         connect2.save
       end
-      @message = "You and " + User.find_by_email(request.from).name + " are connected now, Congratulations :)"
+      @message = "You and " + request.from.name + " are connected now, Congratulations :)"
     # not find
     else 
       @message = "Woops, this invitation has expired :("
@@ -44,8 +44,8 @@ class ConnectRequestsController < ApplicationController
   
   def disconnect
     @user = User.find(params[:id])
-    Connect.where("(connects.to = ? AND connects.from = ?) OR (connects.from = ? AND connects.to = ?)", 
-                  @user.email, current_user.email, current_user.email, @user.email).destroy_all
+    Connect.where("(connects.to_id = ? AND connects.from_id = ?) OR (connects.from_id = ? AND connects.to_id = ?)", 
+                  @user.id, current_user.id, current_user.id, @user.id).destroy_all
   
   end
   

@@ -17,7 +17,7 @@ class ReferRequestsController < ApplicationController
     # save request to DB
     @token = generate_token
     @to = User.find(params[:id])
-    @request = ReferRequest.new(from: current_user.email, to: @to.email, token: @token, accepted: false)
+    @request = ReferRequest.new(from_id: current_user.id, to_id: @to.id, token: @token, accepted: false)
     @request.save
     
     
@@ -30,7 +30,7 @@ class ReferRequestsController < ApplicationController
   def view_profile
     # not accepted yet, accept and save relation to database
     if (request = ReferRequest.find_by_token(params[:token]) )
-      @applicant = User.find_by_email(request.from)
+      @applicant = request.from
     # not find
     else 
       @message = "Woops, this invitation has expired :("

@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  # Model Associations 
+  has_many :referrer_cases, class_name: "ReferCase", foreign_key: "referrer_id" 
+  has_many :referral_cases, class_name: "ReferCase", foreign_key: "referral_id" 
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
