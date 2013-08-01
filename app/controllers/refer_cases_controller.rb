@@ -3,7 +3,7 @@ class ReferCasesController < ApplicationController
   
   def create
     referral = User.find(params[:id])
-    @case = ReferCase.new(referrer:current_user.email, referral:referral.email, status:"准备递交简历")
+    @case = ReferCase.new(referrer_id: current_user.id, referral_id: referral.id, status:"准备递交简历")
     @case.save
     
     redirect_to refer_cases_show_referrer_path
@@ -11,12 +11,12 @@ class ReferCasesController < ApplicationController
   
   #show all cases in which current user is referrer
   def show_referrer
-    @cases = ReferCase.all(:conditions => "referrer = '#{current_user.email}'")
+    @cases = ReferCase.all(:conditions => "referrer_id = '#{current_user.id}'")
   end
   
   #show all cases in which current user is referral
   def show_referral
-    @cases = ReferCase.all(:conditions => "referral = '#{current_user.email}'")
+    @cases = ReferCase.all(:conditions => "referral_id = '#{current_user.id}'")
   end
   
   def edit

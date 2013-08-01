@@ -9,13 +9,10 @@
   
   
   <% @cases.each do |case_| %>
-  	<% company = User.find_by_email(case_.referrer).company%>
-  	<% referrer = User.find_by_email(case_.referrer).name%>
-  	<% referral = User.find_by_email(case_.referral).name%>
     <tr>
-      <td><%= referrer %></td>
-      <td><%= referral %></td>
-      <td><%= company %></td>
+      <td><%= case_.referrer.name %></td>
+      <td><%= case_.referral.name %></td>
+      <td><%= case_.referrer.company %></td>
       <td><%= case_.status %></td>
       <td><%= link_to '更新', {controller: "refer_cases", action: "edit", id: case_.id, referrer: "false" } %></td>
  	  <td><%= link_to '删除', {action: "destroy", id: case_.id},  method: :delete, data: { confirm: 'Are you sure?' } %></td>

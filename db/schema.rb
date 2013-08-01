@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130731033733) do
+ActiveRecord::Schema.define(version: 20130801092344) do
 
   create_table "china_cities", force: true do |t|
     t.string   "province"
@@ -56,12 +56,15 @@ ActiveRecord::Schema.define(version: 20130731033733) do
   end
 
   create_table "refer_cases", force: true do |t|
-    t.string   "referrer"
-    t.string   "referral"
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "referrer_id"
+    t.integer  "referral_id"
   end
+
+  add_index "refer_cases", ["referral_id"], name: "index_refer_cases_on_referral_id", using: :btree
+  add_index "refer_cases", ["referrer_id"], name: "index_refer_cases_on_referrer_id", using: :btree
 
   create_table "refer_requests", force: true do |t|
     t.string   "from"
@@ -80,12 +83,6 @@ ActiveRecord::Schema.define(version: 20130731033733) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "company"
-    t.string   "dept"
-    t.string   "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -96,8 +93,10 @@ ActiveRecord::Schema.define(version: 20130731033733) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "password_digest"
-    t.string   "remember_token"
+    t.string   "name"
+    t.string   "company"
+    t.string   "dept"
+    t.string   "position"
     t.boolean  "admin"
     t.string   "hometown"
     t.string   "china_school1"
@@ -111,8 +110,6 @@ ActiveRecord::Schema.define(version: 20130731033733) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["name"], name: "index_users_on_name", unique: true, using: :btree
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
