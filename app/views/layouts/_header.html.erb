@@ -8,7 +8,15 @@
           <li><%= link_to "公司", companies_path %></li>
           <% if user_signed_in? %>
           	<li><%= link_to "联系人", connections_path %></li>
-            
+            <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                推荐 <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "我是推荐人", refer_cases_show_referrer_path %></li>
+                <li><%= link_to "我是被推荐人", refer_cases_show_referral_path %></li>
+              </ul>
+            </li>
              
             <% if current_user.try(:admin?) %>
             <li id="fat-menu" class="dropdown">

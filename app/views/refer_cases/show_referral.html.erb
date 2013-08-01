@@ -17,8 +17,8 @@
       <td><%= referral %></td>
       <td><%= company %></td>
       <td><%= case_.status %></td>
-      <td><%= link_to '更新', refer_cases_edit_path %></td>
- 	  <td><%= link_to '删除', refer_cases_destroy_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to '更新', {controller: "refer_cases", action: "edit", id: case_.id, referrer: "false" } %></td>
+ 	  <td><%= link_to '删除', {action: "destroy", id: case_.id},  method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
 </table>

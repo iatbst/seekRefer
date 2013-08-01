@@ -20,14 +20,25 @@ class ReferCasesController < ApplicationController
   end
   
   def edit
+    @case = ReferCase.find(params[:id])
+    if(params[:referrer] == "true")
+      @referrer = true
+    else
+      @referrer = false
+    end
     
   end
   
+  # update case status
   def update
-    
+    @case = ReferCase.find(params[:id])
+    @case.update(status: params["refer_case"][:status])
+    redirect_to action: "edit", id: @case.id, referrer: params[:referrer]
   end
   
   def destroy
-    
+    @case = ReferCase.find(params[:id])
+    @case.destroy
+    redirect_to root_path
   end
 end
