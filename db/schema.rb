@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130724211559) do
+ActiveRecord::Schema.define(version: 20130802072845) do
 
   create_table "china_cities", force: true do |t|
     t.string   "province"
@@ -40,20 +40,63 @@ ActiveRecord::Schema.define(version: 20130724211559) do
   end
 
   create_table "connect_requests", force: true do |t|
-    t.string   "from"
-    t.string   "to"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "token"
     t.boolean  "accepted"
+    t.integer  "from_id"
+    t.integer  "to_id"
   end
 
+  add_index "connect_requests", ["from_id"], name: "index_connect_requests_on_from_id", using: :btree
+  add_index "connect_requests", ["to_id"], name: "index_connect_requests_on_to_id", using: :btree
+
   create_table "connects", force: true do |t|
-    t.string   "from"
-    t.string   "to"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "from_id"
+    t.integer  "to_id"
+  end
+
+  add_index "connects", ["from_id"], name: "index_connects_on_from_id", using: :btree
+  add_index "connects", ["to_id"], name: "index_connects_on_to_id", using: :btree
+
+  create_table "refer_cases", force: true do |t|
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "referrer_id"
+    t.integer  "referral_id"
+    t.boolean  "is_active"
+    t.string   "result"
+    t.integer  "feedback"
+  end
+
+  add_index "refer_cases", ["referral_id"], name: "index_refer_cases_on_referral_id", using: :btree
+  add_index "refer_cases", ["referrer_id"], name: "index_refer_cases_on_referrer_id", using: :btree
+
+  create_table "refer_posts", force: true do |t|
+    t.integer  "refer_case_id"
+    t.integer  "user_id"
+    t.string   "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "refer_posts", ["refer_case_id"], name: "index_refer_posts_on_refer_case_id", using: :btree
+  add_index "refer_posts", ["user_id"], name: "index_refer_posts_on_user_id", using: :btree
+
+  create_table "refer_requests", force: true do |t|
+    t.string   "token"
+    t.boolean  "accepted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "from_id"
+    t.integer  "to_id"
+  end
+
+  add_index "refer_requests", ["from_id"], name: "index_refer_requests_on_from_id", using: :btree
+  add_index "refer_requests", ["to_id"], name: "index_refer_requests_on_to_id", using: :btree
 
   create_table "us_colleges", force: true do |t|
     t.string   "state"

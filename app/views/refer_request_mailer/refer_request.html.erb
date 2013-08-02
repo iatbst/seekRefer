@@ -119,17 +119,22 @@
 											<br />
 											<br />
 											
-											<div><table style="float: left" cellspacing="0" cellpadding="0"> <tr> 
+		<table width="100%" border="0" cellspacing="40" cellpadding="0">
+			<tr>	
+			<td width="25%"></td>								
+			<td width="25%"><table style="float: left" cellspacing="0" cellpadding="0"> <tr> 
 <td align="center" width="60" height="30" bgcolor="#000091" style="-webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; color: #ffffff; display: block;">
-<a href="http://www.EXAMPLE.com/" style="color: #ffffff; font-size:16px; font-weight: bold; font-family: Helvetica, Arial, sans-serif; text-decoration: none; line-height:30px; width:100%; display:inline-block">感兴趣</a>
+<a href="<%= url_for(controller: "refer_requests", action: "view_profile", only_path: false, :token => @token) %>" style="color: #ffffff; font-size:16px; font-weight: bold; font-family: Helvetica, Arial, sans-serif; text-decoration: none; line-height:30px; width:100%; display:inline-block">感兴趣</a>
 </td> 
-</tr> </table><span style=”padding-left:50px”></span>
+</tr> </table></td>
 
-<table style="float: left" cellspacing="0" cellpadding="0"> <tr> 
+<td>
+<table width="25%" style="float: left" cellspacing="0" cellpadding="0"> <tr> 
 <td align="center" width="60" height="30" bgcolor="#000091" style="-webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; color: #ffffff; display: block;">
-<a href="http://www.EXAMPLE.com/" style="color: #ffffff; font-size:16px; font-weight: bold; font-family: Helvetica, Arial, sans-serif; text-decoration: none; line-height:30px; width:100%; display:inline-block">忽略</a>
-</td> 
-</tr> </table></div>
+<a href="<%= url_for(controller: "refer_requests", action: "ignore_request", only_path: false, :token => @token) %>" style="color: #ffffff; font-size:16px; font-weight: bold; font-family: Helvetica, Arial, sans-serif; text-decoration: none; line-height:30px; width:100%; display:inline-block">忽略</a>
+</td><td></td> 
+
+</tr> </table></td></tr></table>
 											
 											
 								

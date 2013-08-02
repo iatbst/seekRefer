@@ -1,0 +1,59 @@
+<script type="text/javascript">
+
+
+jQuery(document).ready(function($) {
+  $('a[rel*=facebox]').facebox()
+  $('#facebox .body').width('1000px');
+})
+
+</script>
+
+<p>
+  <strong>申请状态: </strong>
+  <%= @case.status %>
+</p>
+
+<p>
+  <strong>推荐人</strong>
+  <%= @case.referrer.name %>
+</p>
+
+<p>
+  <strong>求职者</strong>
+  <%= @case.referral.name %>
+</p>
+
+<%= form_for @case, :url => {:action => 'update', :referrer => @referrer} do |f| %>
+  <% if @referrer == true %>
+  <%= f.select :status, ["准备递交简历", "简历已递交"],{},{:class => 'selectpicker'} %>
+  <% else %>
+  <%= f.select :status, ["HR已联系", "面试中", "HR通知面试结果(关闭case)" ],{},{:class => 'selectpicker'} %>
+  <% end %>
+  <%= hidden_field_tag :id, @case.id %>
+  <%= submit_tag "更新状态", class: "btn btn-primary", :disable_with => "Please wait..."  %>
+<% end %>
+
+<td><%= link_to '关闭Case', {controller:"refer_cases", action:"feedback", id:@case.id}, class: "btn btn-primary", :rel => "facebox" %></td>
+
+<table class="table table-hover">
+  <tr>
+    <th>留言</th>
+  </tr>
+  
+  <% @posts.each do |post| %>
+    <tr>
+      <td><%= image_tag post.user.avatar.url(:thumb) %></td>
+      <td><%= post.content %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= form_for :refer_post, url:{controller: "refer_posts", action: "create"} do |f| %> 
+     
+    
+      <%= hidden_field_tag :refer_case_id, @case.id %>
+      <%= hidden_field_tag :referrer, @referrer %>
+      <%= f.text_area :content %>
+
+      <%= f.submit "留言", class: "btn btn-large btn-primary" %>
+<% end %>

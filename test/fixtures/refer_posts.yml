@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  refer_case_id_id: 
+  user_id_id: 
+  content: MyString
+
+two:
+  refer_case_id_id: 
+  user_id_id: 
+  content: MyString

@@ -1,0 +1,33 @@
+<table width="100%">
+	<tr>
+		<td width="30%"><%= image_tag @applicant.avatar.url(:small) %></td>
+		<td>
+
+
+  <strong>用户名</strong>
+  <%= @applicant.name %><br />
+  
+  <strong>公司</strong>
+  <%= @applicant.company %><br />
+
+  <strong>家乡</strong>
+  <%= @applicant.hometown %><br />
+
+  <strong>国内毕业院校</strong>
+  <%= @applicant.china_school1 %><br />
+
+  <strong>海外毕业院校</strong>
+  <%= @applicant.us_school1 %><br />
+  
+  		</td>
+  	<tr>
+</table>
+
+<iframe src="<%= '/users/' + @applicant.name + '/resume.pdf' %>" width="600" height="675"></iframe>
+<br />
+<br />
+<br />
+<%= link_to "愿意推荐", {controller: "refer_cases", action: "create", id: @applicant}, class: "btn btn-primary"%>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%= link_to "拒绝推荐", {controller: "refer_cases", action: "show_referrer"}, class: "btn btn-primary"%>
+

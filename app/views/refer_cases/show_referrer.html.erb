@@ -1,0 +1,21 @@
+
+
+<table class="table table-hover">
+  <tr>
+    <th>推荐人</th>
+    <th>被推荐人</th>
+    <th>公司</th>
+    <th>状态</th>
+  </tr>
+  
+  <% @cases.each do |case_| %>
+    <tr>
+      <td><%= case_.referrer.name %></td>
+      <td><%= case_.referral.name %></td>
+      <td><%= case_.referrer.company %></td>
+      <td><%= case_.status %></td>
+     <td><%= link_to '更新', {controller: "refer_cases", action: "edit", id: case_.id, referrer: "true" } %></td>
+ 	  <td><%= link_to '删除', {action: "destroy", id: case_.id}, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
