@@ -42,6 +42,8 @@ gem 'omniauth'
 #gem "paperclip", "~> 3.1"
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 
+gem 'simple_form'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
