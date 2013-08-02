@@ -35,4 +35,25 @@ jQuery(document).ready(function($) {
 
 <td><%= link_to '关闭Case', {controller:"refer_cases", action:"feedback", id:@case.id}, class: "btn btn-primary", :rel => "facebox" %></td>
 
+<table class="table table-hover">
+  <tr>
+    <th>留言</th>
+  </tr>
+  
+  <% @posts.each do |post| %>
+    <tr>
+      <td><%= image_tag post.user.avatar.url(:thumb) %></td>
+      <td><%= post.content %></td>
+    </tr>
+  <% end %>
+</table>
 
+<%= form_for :refer_post, url:{controller: "refer_posts", action: "create"} do |f| %> 
+     
+    
+      <%= hidden_field_tag :refer_case_id, @case.id %>
+      <%= hidden_field_tag :referrer, @referrer %>
+      <%= f.text_area :content %>
+
+      <%= f.submit "留言", class: "btn btn-large btn-primary" %>
+<% end %>

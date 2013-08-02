@@ -29,6 +29,8 @@ class ReferCasesController < ApplicationController
       @referrer = false
     end
     
+    @posts = @case.refer_posts
+    
   end
   
   # update case status

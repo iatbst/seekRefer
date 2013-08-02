@@ -33,6 +33,9 @@ SeekRefer::Application.routes.draw do
   patch 'refer_cases/destroy' => 'refer_cases#destroy'
   patch 'refer_cases/update' => 'refer_cases#update'
   get 'refer_cases/feedback' => 'refer_cases#feedback'
+  
+  #refer post
+  post 'refer_posts/create' => 'refer_posts#create'
  
  
   
