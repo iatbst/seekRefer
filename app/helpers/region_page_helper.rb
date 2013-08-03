@@ -1,0 +1,2 @@
+module RegionPageHelper
+end
