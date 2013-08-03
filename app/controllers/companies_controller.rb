@@ -15,7 +15,7 @@ class CompaniesController < ApplicationController
   #show company info
   def show
     @company = Company.find(params[:id])
-    @users = User.all(:conditions => "company = '#{@company.name}'")
+    @users = @company.users
   end
   
   #list all company

@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end 
   
   def create
-    @user = User.new(params.require(:user).permit(:name, :company, :dept, :position, :email, :password, :password_confirmation))
+    @user = User.new(params.require(:user).permit(:name, :company_id, :dept, :position, :email, :password, :password_confirmation))
     if @user.save
       flash[:success] = "Add User: " + params[:user][:name] + " to DB!"
       redirect_to @user
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
    
   private
     def user_params
-      params.require(:user).permit(:name, :email, :password, :company, :dept, :position,
+      params.require(:user).permit(:name, :email, :password, :company_id, :dept, :position,
                                    :password_confirmation)
     end
 end

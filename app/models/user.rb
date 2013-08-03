@@ -3,6 +3,12 @@ class User < ActiveRecord::Base
   has_many :referrer_cases, class_name: "ReferCase", foreign_key: "referrer_id" 
   has_many :referral_cases, class_name: "ReferCase", foreign_key: "referral_id" 
   belongs_to :company
+  belongs_to :location
+  belongs_to :hometown, class_name: "ChinaCity"
+  belongs_to :china_school1, class_name: "ChinaCollege", foreign_key: "china_school1_id"
+  belongs_to :china_school2, class_name: "ChinaCollege", foreign_key: "china_school2_id"
+  belongs_to :us_school1, class_name: "UsCollege", foreign_key: "us_school1_id"
+  belongs_to :us_school2, class_name: "UsCollege", foreign_key: "us_school2_id"
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

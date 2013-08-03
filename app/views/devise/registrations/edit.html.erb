@@ -11,14 +11,18 @@
   <%= f.label :email, "邮箱"%>
   <%= f.email_field :email, :autofocus => true %>
   
-  <%= f.label :company, "公司" %>
-  <%= f.text_field :company %>
+  <%= f.label :location_id ,"地区"%>
+  <%= f.select(:location_id, Location.all.map {|h| [h.name, h.id]},{:prompt => "选择地区"},{:class => 'selectpicker'}) %>
+  
+  <%= f.label :company_id ,"公司"%>
+  <%= f.select(:company_id, Company.all.map {|h| [h.name, h.id]},{:prompt => "选择公司"},{:class => 'selectpicker'}) %>
   
   <%= f.label :dept, "部门" %>
   <%= f.text_field :dept %>
       
   <%= f.label :position, "职位" %>
   <%= f.text_field :position %>
+  
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     Currently waiting confirmation for: <%= resource.unconfirmed_email %>
@@ -33,14 +37,14 @@
   <%= f.label :current_password, "当前密码"%> <i>(修改密码前请输入当前密码)</i><br />
   <%= f.password_field :current_password %>
   
-  <%= f.label :hometown, "家乡" %>
-  <%= f.select(:hometown, ChinaCity.all.map {|h| [h.province]},{:prompt => "选择家乡"},{:class => 'selectpicker'}) %>
+  <%= f.label :hometown_id, "家乡" %>
+  <%= f.select(:hometown_id, ChinaCity.all.map {|h| [h.province, h.id]},{:prompt => "选择家乡"},{:class => 'selectpicker'}) %>
 
-  <%= f.label :china_school1, "国内毕业院校"%>
-  <%= f.select(:china_school1, ChinaCollege.all.map {|h| [h.name]},{:prompt => "选择院校"},{:class => 'selectpicker'}) %>
+  <%= f.label :china_school1_id, "国内毕业院校"%>
+  <%= f.select(:china_school1_id, ChinaCollege.all.map {|h| [h.name, h.id]},{:prompt => "选择院校"},{:class => 'selectpicker'}) %>
       
-  <%= f.label :us_school1, "海外毕业院校" %>
-  <%= f.select(:us_school1, UsCollege.all.map {|h| [h.name]},{:prompt => "选择院校"},{:class => 'selectpicker'}) %> <br /><br />
+  <%= f.label :us_school1_id, "海外毕业院校" %>
+  <%= f.select(:us_school1_id, UsCollege.all.map {|h| [h.name, h.id]},{:prompt => "选择院校"},{:class => 'selectpicker'}) %> <br /><br />
 
   <%= f.submit "更新", class: "btn btn-large btn-primary" %>
 <% end %>

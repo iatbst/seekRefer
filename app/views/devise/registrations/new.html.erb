@@ -19,6 +19,9 @@
       
       <%= f.label :avatar ,  "上传头像"%>
  	  <%= f.file_field :avatar %>
+ 	  
+  	  <%= f.label :location_id ,"地区"%>
+ 	  <%= f.select(:location_id, Location.all.map {|h| [h.name, h.id]},{:prompt => "选择地区"},{:class => 'selectpicker'}) %>
       
       <%= f.label :company_id ,"公司"%>
       <%= f.select(:company_id, Company.all.map {|h| [h.name, h.id]},{:prompt => "选择公司"},{:class => 'selectpicker'}) %>
@@ -29,14 +32,14 @@
       <%= f.label :position, "职位" %>
       <%= f.text_field :position %>
       
-      <%= f.label :hometown, "家乡" %>
-      <%= f.select(:hometown, ChinaCity.all.map {|h| [h.province]},{:prompt => "选择家乡"},{:class => 'selectpicker'}) %>
+      <%= f.label :hometown_id, "家乡" %>
+      <%= f.select(:hometown_id, ChinaCity.all.map {|h| [h.province, h.id]},{:prompt => "选择家乡"},{:class => 'selectpicker'}) %>
 
-      <%= f.label :china_school1, "国内毕业院校"%>
-      <%= f.select(:china_school1, ChinaCollege.all.map {|h| [h.name]},{:prompt => "选择院校"},{:class => 'selectpicker'}) %>
+      <%= f.label :china_school1_id, "国内毕业院校"%>
+      <%= f.select(:china_school1_id, ChinaCollege.all.map {|h| [h.name, h.id]},{:prompt => "选择院校"},{:class => 'selectpicker'}) %>
       
-      <%= f.label :us_school1, "海外毕业院校" %>
-      <%= f.select(:us_school1, UsCollege.all.map {|h| [h.name]},{:prompt => "选择院校"},{:class => 'selectpicker'}) %> <br /><br />   
+      <%= f.label :us_school1_id, "海外毕业院校" %>
+      <%= f.select(:us_school1_id, UsCollege.all.map {|h| [h.name, h.id]},{:prompt => "选择院校"},{:class => 'selectpicker'}) %> <br /><br />   
 
       <%= f.submit "创建", class: "btn btn-large btn-primary" %>
     <% end %>

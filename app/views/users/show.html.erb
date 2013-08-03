@@ -6,6 +6,11 @@
   <strong>用户名</strong>
   <%= @user.name %>
 </p>
+
+<p>
+  <strong>地区</strong>
+  <%= @user.location.name %>
+</p>
  
 <p>
   <strong>公司</strong>
@@ -29,17 +34,17 @@
 
 <p>
   <strong>家乡</strong>
-  <%= @user.hometown %>
+  <%= @user.hometown.province %>
 </p>
 
 <p>
   <strong>国内毕业院校</strong>
-  <%= @user.china_school1 %>
+  <%= @user.china_school1.name %>
 </p>
 
 <p>
   <strong>海外毕业院校</strong>
-  <%= @user.us_school1 %>
+  <%= @user.us_school1.name %>
 </p>
 
 <%= link_to '更新', edit_user_registration_path %>
