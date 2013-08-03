@@ -20,8 +20,8 @@
       <%= f.label :avatar ,  "上传头像"%>
  	  <%= f.file_field :avatar %>
       
-      <%= f.label :company ,"公司"%>
-      <%= f.text_field :company %>
+      <%= f.label :company_id ,"公司"%>
+      <%= f.select(:company_id, Company.all.map {|h| [h.name, h.id]},{:prompt => "选择公司"},{:class => 'selectpicker'}) %>
       
       <%= f.label :dept, "部门" %>
       <%= f.text_field :dept %>

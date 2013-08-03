@@ -1,5 +1,6 @@
 class Company < ActiveRecord::Base
-  #has_many :users
+  #Association
+  has_many :users
   
   #Paperclip
   has_attached_file :logo, :styles => { :medium => "900x300>", 
