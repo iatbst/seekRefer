@@ -6,8 +6,8 @@
 </head>
 
 <body>
-	<div>
-		<div id="myCarousel" class="carousel slide" data-interval="5000">
+	<div class="row-fluid">
+		<div id="myCarousel" class="carousel slide span12" data-interval="5000">
 			<ol class="carousel-indicators">
 				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 				<li data-target="#myCarousel" data-slide-to="1"></li>
@@ -20,18 +20,38 @@
 				<div class="item"><%= image_tag("twitter-logo.png", :id => "twitter_logo") %></div>
 				<div class="item"><%= image_tag("facebook-logo.png", :id => "facebook_logo") %></div>
 			</div>
-			<div class="search-area">		
-				<form class="form-search">
-					<input type="text" class="input-xlarge search-query">
-					<button type="submit" class="btn">Search</button>
-				</form>
-			</div>
+
+
 			<!-- Carousel nav -->
 			<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
 			<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+	
 		</div>
     </div>
-		<h>网站建设中.....</h>
+
+    <div class="city-tile">
+    	<ul class="city-icons">
+    		<li id="city-1" class="city city1">
+    			<a class='hover'>
+    				<b></b>
+    				<strong>旧金山</strong>
+    			</a>
+    		</li>
+    		<li id="city-2" class="city city2">
+    			<a class='hover'>
+    				<b></b>
+    				<strong>纽约</strong>
+    			</a>
+    		</li>
+    		<li id="city-3" class="city city3">
+    			<a class='hover'>
+    				<b></b>
+    				<strong>西雅图</strong>
+    			</a>
+    		</li>
+    	</ul>
+    </div>
+
 </body>
 
 <% end %>

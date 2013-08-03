@@ -1,17 +1,18 @@
 
 <div class="container">
   <div class="span6 offset3">
-<%= form_for :refer_request, url:refer_requests_recv_request_path  do |f| %>
+<%= simple_form_for :refer_request, url:refer_requests_recv_request_path  do |f| %>
   
 	  <%= hidden_field_tag :id, @to.id %>
-	  
-      <%= f.label :intro, "介绍自己"%>
-      <%= f.text_area :intro, :autofocus => true%>
 
-	  <%= f.label :resume, "上传简历"%>
-      <%= f.file_field :resume %>
+    <%= f.label :intro, "介绍自己"%>
+    <%= f.text_area :intro, :autofocus => true %>
 
-      <%= f.submit "发送请求", class: "btn btn-large btn-primary" %>
+    <div>
+	     <%= f.label :resume, "上传简历"%>
+       <%= f.file_field :resume %>
+    </div>
+      <%= f.submit "发送请求", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
