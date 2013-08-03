@@ -1,2 +1,19 @@
-<h1>RegionPage#index</h1>
-<p>Find me in app/views/region_page/index.html.erb</p>
+<table class="table table-hover">
+  <tr>
+  	<th></th>
+    <th>公司</th>
+    <th>关于</th>
+    <th>网址ַ</th>
+    <th></th>
+    <th></th>
+  </tr>
+ 
+  <% @companies.each do |company| %>
+    <tr>
+      <td><%= image_tag company.logo.url(:thumb) %></td>
+      <td><%= link_to company.name, company_path(company) %></td>
+      <td><%= company.description %></td>
+      <td><%= company.website %></td>
+    </tr>
+  <% end %>
+</table>
