@@ -1,5 +1,6 @@
 SeekRefer::Application.routes.draw do
   
+  get "region_page/index"
   devise_for :users
   resources :companies
   resources :users
