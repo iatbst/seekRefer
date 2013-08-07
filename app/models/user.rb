@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   # Model Associations 
+  has_many :connects, foreign_key: "from_id"
+  has_many :connect_users, :source => :to, class_name: "User", :through => :connects
   has_many :referrer_cases, class_name: "ReferCase", foreign_key: "referrer_id" 
   has_many :referral_cases, class_name: "ReferCase", foreign_key: "referral_id" 
   belongs_to :company

@@ -1,5 +1,5 @@
 class ReferRequestsController < ApplicationController
-
+  before_filter :authenticate_user!, except: ["view_profile", "ignore_request"]
   
   def send_request
     @to = User.find(params[:id])

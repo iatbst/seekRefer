@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  industry_id: 
+  company_id: 
+  location_id: 
+  position: MyString
+
+two:
+  industry_id: 
+  company_id: 
+  location_id: 
+  position: MyString

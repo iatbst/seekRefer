@@ -4,6 +4,7 @@ SeekRefer::Application.routes.draw do
   devise_for :users
   resources :companies
   resources :users
+  resources :job_posts
   root 'homes#index'
   get 'homes' => 'homes#index'
   

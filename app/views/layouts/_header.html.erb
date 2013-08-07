@@ -6,6 +6,7 @@
         <ul class="nav pull-right">
           <li><%= link_to "主页", root_path %></li>
           <li><%= link_to "公司", companies_path %></li>
+          <li><%= link_to "职位发布", job_posts_path %></li>
           <% if user_signed_in? %>
           	<li><%= link_to "联系人", connections_path %></li>
             <li id="fat-menu" class="dropdown">

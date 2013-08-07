@@ -1,0 +1,67 @@
+<script type="text/javascript">
+
+
+jQuery(document).ready(function($) {
+  $('a[rel*=facebox]').facebox()
+  $('#facebox .body').width('1000px');
+})
+
+</script>
+
+
+<table class="table table-hover">
+  <tr>
+  	
+  </tr>
+ 
+	<tr>
+	 <td>
+  		<strong>领域 </strong>
+  		<%= @job_post.industry.name %>
+	 </td>
+	</tr>
+
+	<tr>
+	 <td>
+  		<strong>公司 </strong>
+  		<%= @job_post.company.name %>
+	 </td>
+	</tr>
+	
+	<tr>
+	 <td>
+  		<strong>地点 </strong>
+  		<%= @job_post.location.name %>
+	 </td>
+	</tr>
+	<tr>
+	 <td>
+  		<strong>职位 </strong>
+  		<%= @job_post.position %>
+	 </td>
+	</tr>
+	<tr>
+	 <td>
+  		<p4><pre><%= @job_post.content %></pre></p4>
+	 </td>
+	</tr>
+	<tr>
+	 <td>
+  		<strong>发布者 </strong>
+  		<%= @job_post.poster.name %>
+	 </td>
+	</tr>
+	<tr>
+	 <td>
+	 	<% if user_signed_in? %>
+	 		<%= link_to '求推荐', {controller:"refer_requests", action:"send_request", id:@job_post.poster.id}, :rel => "facebox" %>
+	 	<% else%>
+	 	    <%= link_to '求推荐', {action:"show", id:@job_post.id, signedin: true} %>
+	 	<% end %>
+	 </td>
+	</tr>
+
+
+</table>
+
+

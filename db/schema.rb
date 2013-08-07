@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130803084027) do
+ActiveRecord::Schema.define(version: 20130807003055) do
 
   create_table "china_cities", force: true do |t|
     t.string   "province"
@@ -60,6 +60,28 @@ ActiveRecord::Schema.define(version: 20130803084027) do
 
   add_index "connects", ["from_id"], name: "index_connects_on_from_id", using: :btree
   add_index "connects", ["to_id"], name: "index_connects_on_to_id", using: :btree
+
+  create_table "industries", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "job_posts", force: true do |t|
+    t.integer  "industry_id"
+    t.integer  "company_id"
+    t.integer  "location_id"
+    t.string   "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "poster_id"
+    t.text     "content"
+  end
+
+  add_index "job_posts", ["company_id"], name: "index_job_posts_on_company_id", using: :btree
+  add_index "job_posts", ["industry_id"], name: "index_job_posts_on_industry_id", using: :btree
+  add_index "job_posts", ["location_id"], name: "index_job_posts_on_location_id", using: :btree
+  add_index "job_posts", ["poster_id"], name: "index_job_posts_on_poster_id", using: :btree
 
   create_table "locations", force: true do |t|
     t.string   "name"
@@ -112,6 +134,11 @@ ActiveRecord::Schema.define(version: 20130803084027) do
   end
 
   create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "dept"
+    t.string   "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -122,9 +149,8 @@ ActiveRecord::Schema.define(version: 20130803084027) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "name"
-    t.string   "dept"
-    t.string   "position"
+    t.string   "password_digest"
+    t.string   "remember_token"
     t.boolean  "admin"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
@@ -145,6 +171,8 @@ ActiveRecord::Schema.define(version: 20130803084027) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["hometown_id"], name: "index_users_on_hometown_id", using: :btree
   add_index "users", ["location_id"], name: "index_users_on_location_id", using: :btree
+  add_index "users", ["name"], name: "index_users_on_name", unique: true, using: :btree
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["us_school1_id"], name: "index_users_on_us_school1_id", using: :btree
   add_index "users", ["us_school2_id"], name: "index_users_on_us_school2_id", using: :btree

@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="span6 offset3">
+<%= form_for :job_post, url: job_posts_path do |f| %>
+ 	  
+ 	  <%= f.label :industry_id ,"领域"%>
+ 	  <%= f.select(:industry_id, Industry.all.map {|h| [h.name, h.id]},{:prompt => "选择领域"},{:class => 'selectpicker'}) %> 
+  	  
+  	  <%= f.label :location_id ,"地区"%>
+ 	  <%= f.select(:location_id, Location.all.map {|h| [h.name, h.id]},{:prompt => "选择地区"},{:class => 'selectpicker'}) %>
+      
+      <%= f.label :company_id ,"公司"%>
+      <%= f.select(:company_id, Company.all.map {|h| [h.name, h.id]},{:prompt => "选择公司"},{:class => 'selectpicker'}) %>
+ 
+ 	  <%= f.label :position , "职位"%>
+      <%= f.text_field :position %>
+      
+      <%= f.label :content , "详细描述"%>
+      <%= f.text_area :content %>
+      
+  <p>
+    <%= f.submit "发布", class: "btn btn-large btn-primary"%>
+  </p>
+<% end %>
+
+
+
+</div>
+</div>
