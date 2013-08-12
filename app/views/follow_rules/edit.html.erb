@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="span6 offset3">
+<%= form_for :follow_rule, url: follow_rule_path(@follow_rule.id), method: :patch do |f| %>
+
+ 
+ 	  <%= f.label :industry_id ,"领域"%>
+ 	  <%= f.select(:industry_id, Industry.all.map {|h| [h.name, h.id]},{:prompt => "选择领域"},{:class => 'selectpicker'}) %> 
+  	  
+  	  <%= f.label :location_id ,"地区"%>
+ 	  <%= f.select(:location_id, Location.all.map {|h| [h.name, h.id]},{:prompt => "选择地区"},{:class => 'selectpicker'}) %>
+      
+      <%= f.label :company_id ,"公司"%>
+      <%= f.select(:company_id, Company.all.map {|h| [h.name, h.id]},{:prompt => "选择公司"},{:class => 'selectpicker'}) %>
+
+  
+   
+  
+    <%= f.submit "保存", class: "btn btn-large btn-primary"%>
+  
+<% end %>

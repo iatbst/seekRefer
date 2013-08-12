@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130807003055) do
+ActiveRecord::Schema.define(version: 20130811205729) do
 
   create_table "china_cities", force: true do |t|
     t.string   "province"
@@ -60,6 +60,20 @@ ActiveRecord::Schema.define(version: 20130807003055) do
 
   add_index "connects", ["from_id"], name: "index_connects_on_from_id", using: :btree
   add_index "connects", ["to_id"], name: "index_connects_on_to_id", using: :btree
+
+  create_table "follow_rules", force: true do |t|
+    t.integer  "company_id"
+    t.integer  "location_id"
+    t.integer  "industry_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "follower_id"
+  end
+
+  add_index "follow_rules", ["company_id"], name: "index_follow_rules_on_company_id", using: :btree
+  add_index "follow_rules", ["follower_id"], name: "index_follow_rules_on_follower_id", using: :btree
+  add_index "follow_rules", ["industry_id"], name: "index_follow_rules_on_industry_id", using: :btree
+  add_index "follow_rules", ["location_id"], name: "index_follow_rules_on_location_id", using: :btree
 
   create_table "industries", force: true do |t|
     t.string   "name"

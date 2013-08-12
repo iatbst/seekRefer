@@ -1,0 +1,28 @@
+
+<%= link_to '我要follow', new_follow_rule_path, class: "btn btn-primary" %>
+
+<br />
+<br />
+
+<table class="table table-hover">
+  <tr>
+  	<th>领域</th>
+    <th>公司</th>
+    <th>地区</th>
+
+    <th></th>
+    <th></th>
+  </tr>
+ 
+  <% @follow_rules.each do |rule| %>
+    <tr>
+      <td><%= rule.industry.name if not rule.industry.nil? %></td>
+      <td><%= rule.company.name if not rule.company.nil? %></td>
+      <td><%= rule.location.name if not rule.location.nil? %></td>
+
+      <td><%= link_to '修改', edit_follow_rule_path(rule) %></td>
+ 	  <td><%= link_to '删除', follow_rule_path(rule), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+     
+    </tr>
+  <% end %>
+</table>

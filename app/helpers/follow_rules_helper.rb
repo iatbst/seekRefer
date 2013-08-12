@@ -1,0 +1,2 @@
+module FollowRulesHelper
+end

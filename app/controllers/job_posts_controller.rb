@@ -13,6 +13,9 @@ class JobPostsController < ApplicationController
     @job_post = JobPost.new(job_post_params)
     @job_post.poster_id = current_user.id
     @job_post.save
+    #send email to followers 
+    Thread.new { notify_followers( @job_post ) }
+    
     redirect_to job_posts_path    
   end
   
@@ -29,7 +32,6 @@ class JobPostsController < ApplicationController
   end
   
   def update
-    authenticate_user!
     @job_post = JobPost.find(params[:id])
  
     if @job_post.update(job_post_params)
@@ -40,7 +42,6 @@ class JobPostsController < ApplicationController
   end
   
   def destroy
-    authenticate_user!
     @job_post = JobPost.find(params[:id])
     @job_post.destroy
  
@@ -52,4 +53,16 @@ class JobPostsController < ApplicationController
       params.require(:job_post).permit(:industry_id, :company_id, :location_id, :poster_id, :position, :content)
     end
   
+    def notify_followers( post )
+      @followers = User.where(id: FollowRule.select("follow_rules.follower_id").where("(company_id = ? OR company_id IS NULL) AND
+                                                                                       (location_id = ? OR location_id IS NULL) AND
+                                                                                       (industry_id = ? OR industry_id IS NULL) ",   post.company_id, post.location_id, post.industry_id))
+      url = url_for(controller: "job_posts", action: "show", id: post.id, only_path: false)
+      
+      @followers.each do |follower|
+        FollowMailer.notify_followers( follower, post, url).deliver 
+      end
+                                                                              
+      
+    end
 end

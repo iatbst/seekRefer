@@ -5,6 +5,7 @@ SeekRefer::Application.routes.draw do
   resources :companies
   resources :users
   resources :job_posts
+  resources :follow_rules
   root 'homes#index'
   get 'homes' => 'homes#index'
   
