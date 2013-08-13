@@ -8,11 +8,13 @@
   	  <%= f.label :location_id ,"地区"%>
  	  <%= f.select(:location_id, Location.all.map {|h| [h.name, h.id]},{:prompt => "选择地区"},{:class => 'selectpicker'}) %>
       
-      <%= f.label :company_id ,"公司"%>
-      <%= f.select(:company_id, Company.all.map {|h| [h.name, h.id]},{:prompt => "选择公司"},{:class => 'selectpicker'}) %>
- 
+ 	  <%= f.label :company_id , "公司"%>
+      <%= f.autocomplete_field :company_name, autocomplete_company_name_job_posts_path, :id_element=>"#job_post_company_id" %>
+      <%= f.hidden_field :company_id %>
+      
  	  <%= f.label :position , "职位"%>
-      <%= f.text_field :position %>
+      <%= f.autocomplete_field :position_name, autocomplete_position_name_job_posts_path, :id_element=>"#job_post_position_id" %>
+      <%= f.hidden_field :position_id %>
       
       <%= f.label :content , "详细描述"%>
       <%= f.text_area :content %>

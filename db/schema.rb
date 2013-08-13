@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130811205729) do
+ActiveRecord::Schema.define(version: 20130812224605) do
 
   create_table "china_cities", force: true do |t|
     t.string   "province"
@@ -85,22 +85,29 @@ ActiveRecord::Schema.define(version: 20130811205729) do
     t.integer  "industry_id"
     t.integer  "company_id"
     t.integer  "location_id"
-    t.string   "position"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "poster_id"
     t.text     "content"
+    t.integer  "position_id"
   end
 
   add_index "job_posts", ["company_id"], name: "index_job_posts_on_company_id", using: :btree
   add_index "job_posts", ["industry_id"], name: "index_job_posts_on_industry_id", using: :btree
   add_index "job_posts", ["location_id"], name: "index_job_posts_on_location_id", using: :btree
+  add_index "job_posts", ["position_id"], name: "index_job_posts_on_position_id", using: :btree
   add_index "job_posts", ["poster_id"], name: "index_job_posts_on_poster_id", using: :btree
 
   create_table "locations", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "positions", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
   end
 
   create_table "refer_cases", force: true do |t|

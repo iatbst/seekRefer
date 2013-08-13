@@ -20,6 +20,8 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+#gem "jquery-rails", "2.3.0"
+gem 'jquery-ui-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -38,6 +40,9 @@ gem 'bootstrap-sass', '2.3.2.0'
 
 gem 'devise'
 gem 'omniauth'
+
+# Autocomplete
+gem 'rails3-jquery-autocomplete', git: 'https://github.com/francisd/rails3-jquery-autocomplete'
 
 #gem "paperclip", "~> 3.1"
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"

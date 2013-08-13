@@ -4,7 +4,10 @@ SeekRefer::Application.routes.draw do
   devise_for :users
   resources :companies
   resources :users
-  resources :job_posts
+  resources :job_posts do
+    get :autocomplete_position_name, :on => :collection
+    get :autocomplete_company_name, :on => :collection
+  end
   resources :follow_rules
   root 'homes#index'
   get 'homes' => 'homes#index'

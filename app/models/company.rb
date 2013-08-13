@@ -8,4 +8,5 @@ class Company < ActiveRecord::Base
                                           :small => "300x100>", 
                                           :thumb => "150x50>" }, 
                               :default_url => "/images/companies/defaultLogo_:style.jpg"
+
 end
