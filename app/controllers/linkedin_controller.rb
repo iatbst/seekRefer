@@ -47,10 +47,45 @@ class LinkedinController < ApplicationController
               })
  
             #Use the access token to make an authenticated API call
-            @response = access_token.get('https://api.linkedin.com/v1/companies/1337:(id,name,description)')
+            #api = 'https://api.linkedin.com/v1/companies/1337:(id,name,universal-name,website-url,industries,description,logo-url,employee-count-range)'
+            api = 'https://api.linkedin.com/v1/company-search:(facets:(code,buckets:(code,name,count)),companies:(id,name,universal-name,website-url,industries,description,logo-url,employee-count-range))?facets=location,industry&facet=location,us:84&facet=industry,6&count=300&start=20'
+            #api = 'https://api.linkedin.com/v1/companies/1337:(id,name,ticker,description)'
+            @response = access_token.get(api)
  
             #Print body of response to command line window
             puts @response.body
+            
+            
+            hashs = Hash.from_xml(@response.body)
+            
+            if hashs.nil?
+              puts "1 Hash is NULL !!!"
+            elsif hashs["company-search"].nil?
+              puts "2 Hash is NULL !!!"
+            end
+            
+            hashs["company_search"]["companies"]["company"].each do |hash|
+            
+            
+            
+            #hash = Hash.from_xml(@response.body)
+            if hash["industries"]["total"] == "1"
+              in_id = hash["industries"]["industry"]["code"]
+            else
+              in_id = hash["industries"]["industry"][0]["code"]
+            end
+            id = Industry.find_by_code(in_id).id
+            
+            company = Company.new(name: hash["name"],
+                                  description: hash["description"],
+                                  website: hash["website_url"],
+                                  logo_url: hash["logo_url"],
+                                  industry_id: id,
+                                  employee_count_range: hash["employee_count_range"]["name"])
+            company.logo_from_url hash["logo_url"] 
+            company.save
+            
+            end
  
             # Handle HTTP responses
             case @response

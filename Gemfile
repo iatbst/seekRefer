@@ -23,6 +23,9 @@ gem 'jquery-rails'
 #gem "jquery-rails", "2.3.0"
 gem 'jquery-ui-rails'
 
+#parse xml
+gem "nokogiri", "~> 1.6.0"
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 

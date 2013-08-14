@@ -8,7 +8,9 @@
   <tr>
   	<th></th>
     <th>公司</th>
+    <th>领域</th>
     <th>关于</th>
+    <th>规模</th>
     <th>网址</th>
     <th></th>
     <th></th>
@@ -18,7 +20,9 @@
     <tr>
       <td><%= image_tag company.logo.url(:thumb) %></td>
       <td><%= link_to company.name, company_path(company) %></td>
+      <td><%= company.industry.name %></td>
       <td><%= company.description %></td>
+      <td><%= company.employee_count_range %></td>
       <td><%= company.website %></td>
       <% if current_user.try(:admin?) %>
       <td><%= link_to '编辑', edit_company_path(company) %></td>

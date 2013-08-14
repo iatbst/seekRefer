@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130812224605) do
+ActiveRecord::Schema.define(version: 20130814084950) do
 
   create_table "china_cities", force: true do |t|
     t.string   "province"
@@ -37,7 +37,12 @@ ActiveRecord::Schema.define(version: 20130812224605) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.integer  "industry_id"
+    t.string   "logo_url"
+    t.string   "employee_count_range"
   end
+
+  add_index "companies", ["industry_id"], name: "index_companies_on_industry_id", using: :btree
 
   create_table "connect_requests", force: true do |t|
     t.datetime "created_at"
@@ -79,6 +84,7 @@ ActiveRecord::Schema.define(version: 20130812224605) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "code"
   end
 
   create_table "job_posts", force: true do |t|

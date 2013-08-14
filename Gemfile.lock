@@ -89,11 +89,14 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.23)
+    mini_portile (0.5.1)
     minitest (4.7.5)
     multi_json (1.7.7)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
     mysql2 (0.3.11)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     oauth2 (0.9.2)
       faraday (~> 0.8)
       httpauth (~> 0.2)
@@ -171,6 +174,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   mysql2
+  nokogiri (~> 1.6.0)
   oauth2
   omniauth
   paperclip!
