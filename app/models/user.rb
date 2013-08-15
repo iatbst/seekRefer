@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
   belongs_to :us_school1, class_name: "UsCollege", foreign_key: "us_school1_id"
   belongs_to :us_school2, class_name: "UsCollege", foreign_key: "us_school2_id"
   
+  # before save user to database, check company if exist in company database
+  before_save :verify_company
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -23,5 +26,26 @@ class User < ActiveRecord::Base
                                           :small => "100x100>", 
                                           :thumb => "50x50>" }, 
                               :default_url => "/images/users/defaultAvatar_:style.png"
+                              
+                              
+  def verify_company
+    if self.company_id.nil? && !self.company_name.nil?
+      #create new company item 
+      company = Company.new(name:self.company_name)
+      company.save
+      self.company_id = company.id
+      
+    elsif !self.company_id.nil?
+      #set is_active field for this company, which means some users belongs to this company
+      company = Company.find(self.company_id)
+      if company.is_active == false
+        company.is_active = true
+        company.save
+      end
+      
+    end
+    
+  end
+    
     
 end

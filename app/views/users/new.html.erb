@@ -15,8 +15,9 @@
       <%= f.label :password_confirmation, "确认密码" %>
       <%= f.password_field :password_confirmation %>
       
-      <%= f.label :company , "公司"%>
-      <%= f.text_field :company %>
+ 	  <%= f.label :company_id , "公司"%>
+      <%= f.autocomplete_field :company_name, autocomplete_company_name_path, :id_element=>"#user_company_id", :update_elements => {:name => "#user_company"} %>
+      <%= f.hidden_field :company_id %>
       
       <%= f.label :dept, "部门" %>
       <%= f.text_field :dept %>

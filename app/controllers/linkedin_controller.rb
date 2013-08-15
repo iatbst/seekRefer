@@ -48,7 +48,7 @@ class LinkedinController < ApplicationController
  
             #Use the access token to make an authenticated API call
             #api = 'https://api.linkedin.com/v1/companies/1337:(id,name,universal-name,website-url,industries,description,logo-url,employee-count-range)'
-            api = 'https://api.linkedin.com/v1/company-search:(facets:(code,buckets:(code,name,count)),companies:(id,name,universal-name,website-url,industries,description,logo-url,employee-count-range))?facets=location,industry&facet=location,us:84&facet=industry,6&count=300&start=20'
+            api = 'https://api.linkedin.com/v1/company-search:(facets:(code,buckets:(code,name,count)),companies:(id,name,universal-name,website-url,industries,description,logo-url,employee-count-range,locations:(address:(region-code))))?facets=location,industry&facet=location,us:84&facet=industry,6&count=300&start=20'
             #api = 'https://api.linkedin.com/v1/companies/1337:(id,name,ticker,description)'
             @response = access_token.get(api)
  

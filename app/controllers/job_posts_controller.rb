@@ -1,7 +1,7 @@
 class JobPostsController < ApplicationController
   before_filter :authenticate_user!, except: ["index", "show"]
   autocomplete :position, :name
-  autocomplete :company, :name, :extra_data => [:name]
+  autocomplete :company, :name
   
   def index
     @job_posts = JobPost.all

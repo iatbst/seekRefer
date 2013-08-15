@@ -1,5 +1,7 @@
 SeekRefer::Application.routes.draw do
   
+  get 'autocomplete_company_name' => 'application#autocomplete_company_name'
+  
   get "region_page/index"
   devise_for :users
   resources :companies
