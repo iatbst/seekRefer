@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="span6 offset3">
+<%= form_for :company, url: linkedin_create_path do |f| %>
+  
+    <%= f.label :name , "公司名"%>
+    <%= f.text_field :name %>   
+  <p>
+    <%= f.submit "添加", class: "btn btn-large btn-primary"%>
+  </p>
+<% end %>
+
+
+</div>
+</div>

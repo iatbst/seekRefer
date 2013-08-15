@@ -31,9 +31,11 @@ class User < ActiveRecord::Base
   def verify_company
     if self.company_id.nil? && !self.company_name.nil?
       #create new company item 
-      company = Company.new(name:self.company_name)
+      company = Company.new(name:self.company_name, is_active:true)
       company.save
       self.company_id = company.id
+      
+      Thread.new{ update_company(company.id, self.company_name) }
       
     elsif !self.company_id.nil?
       #set is_active field for this company, which means some users belongs to this company
@@ -43,6 +45,17 @@ class User < ActiveRecord::Base
         company.save
       end
       
+    end
+    
+    def update_company(company_id, company_name)
+      
+      if LinkedinController.new.update_company(company_id, company_name)
+        company = Company.find(company_id)
+        company.is_verified = true
+        company.save
+      else
+        # fail to supplement info for new company
+      end 
     end
     
   end

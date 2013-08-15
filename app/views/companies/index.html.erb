@@ -18,10 +18,20 @@
  
   <% @companies.each do |company| %>
     <tr>
-      <td><%= image_tag company.logo.url(:thumb) %></td>
+      <td><%= image_tag company.logo.url(:medium) %></td>
       <td><%= link_to company.name, company_path(company) %></td>
       <td><%= company.industry.name %></td>
-      <td><%= company.description %></td>
+      
+ 	
+      <td>
+      	<button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#company<%= company.id %>">
+			关于....
+		</button>
+		<div id="company<%= company.id %>" class="collapse"><%= company.description %></div>
+      </td>
+      
+      
+      
       <td><%= company.employee_count_range %></td>
       <td><%= company.website %></td>
       <% if current_user.try(:admin?) %>

@@ -46,8 +46,12 @@ SeekRefer::Application.routes.draw do
   post 'refer_posts/create' => 'refer_posts#create'
   
   #linkedin test
-  get 'linkedin/index' => 'linkedin#index'
+  get 'linkedin/get_token' => 'linkedin#get_token'
   get 'linkedin/accept' => 'linkedin#accept'
+  get 'linkedin/get_companies' => 'linkedin#get_companies'
+  get 'linkedin/get_company' => 'linkedin#get_company'
+  get 'linkedin/new' => 'linkedin#new'
+  post 'linkedin/create' => 'linkedin#create'
  
  
   

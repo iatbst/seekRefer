@@ -4,6 +4,7 @@ class LinkedinController < ApplicationController
   API_SECRET = 'uWX6psXl4ZmlNnXL' #Your app's API secret
   REDIRECT_URI = 'http://localhost:3000/linkedin/accept' #Redirect users after authentication to this path, ensure that you have set up your routes to handle the callbacks
   STATE = SecureRandom.hex(15) #A unique long string that is not easy to guess
+  TOKEN_FILE = 'config/linkedin_token.xml'
    
   #Instantiate your OAuth2 client object
   def client
@@ -16,7 +17,7 @@ class LinkedinController < ApplicationController
      )
   end
    
-  def index
+  def get_token
     authorize
   end
  
@@ -38,19 +39,127 @@ class LinkedinController < ApplicationController
           else          
             #Get token object, passing in the authorization code from the previous step
             token = client.auth_code.get_token(code, :redirect_uri => REDIRECT_URI)
-           
-            #Use token object to create access token for user
-            #(this is required so that you provide the correct param name for the access token)
-            access_token = OAuth2::AccessToken.new(client, token.token, {
-              :mode => :query,
-              :param_name => "oauth2_access_token",
-              })
+            
+            #save token to xml file
+            File.open(TOKEN_FILE, 'w') do |file| 
+              file.write(token.token)
+            end
+          end
+  end
+  
+  def new 
+  end
+  
+  def create
+    company_name = params[:company][:name]
+    @company = get_company(company_name)
+    
+  
+  end
+  
+  # save single company by company name 
+  def get_company(company_name)
+    #company_name = 'zynga'
+    company_name_ = company_name.gsub(" ", "%20")
+    prepare_token
+    #api = 'https://api.linkedin.com/v1/companies/1337:(id,name,universal-name,website-url,industries,description,logo-url,employee-count-range)'
+    api = 'https://api.linkedin.com/v1/company-search:(companies:(id,name,universal-name,website-url,industries,description,logo-url,employee-count-range))?count=20&keywords=' + company_name_
+    #api = 'https://api.linkedin.com/v1/companies/1337:(id,name,ticker,description)'   
+    @response = @access_token.get(api)
+    
+    puts @response.body
+    
+    companies = Hash.from_xml(@response.body)
+    
+    if companies["company_search"]["companies"]["total"] == "0"
+      return @response.body
+    end
+    
+    companies["company_search"]["companies"]["company"].each do |company|
+      #find the right company
+      if company["universal_name"] == company_name.downcase || company["name"].downcase == company_name.downcase 
+            
+            if company["industries"]["total"] == "1"
+              in_id = company["industries"]["industry"]["code"]
+            else
+              in_id = company["industries"]["industry"][0]["code"]
+            end
+            id = Industry.find_by_code(in_id).id
+            
+            new_company = Company.new(name: company["name"],
+                                  description: company["description"],
+                                  website: company["website_url"],
+                                  logo_url: company["logo_url"],
+                                  industry_id: id,
+                                  employee_count_range: company["employee_count_range"]["name"])
+            new_company.logo_from_url company["logo_url"] 
+            new_company.save
+            return new_company
+      end 
+    end
+    
+    #Not found
+    puts "Company Not Found"
+    return @response.body
+    
+  end
+  
+  # supplement company info by company_id
+  def update_company (company_id, company_name)
+   
+    company_name_ = company_name.gsub(" ", "%20")
+    prepare_token
+   
+    api = 'https://api.linkedin.com/v1/company-search:(companies:(id,name,universal-name,website-url,industries,description,logo-url,employee-count-range))?count=20&keywords=' + company_name_
+     
+    @response = @access_token.get(api)
+    
+    puts @response.body
+    
+    companies = Hash.from_xml(@response.body)
+    
+    if companies["company_search"]["companies"]["total"] == "0"
+      return @response.body
+    end
+    
+    companies["company_search"]["companies"]["company"].each do |company|
+      #find the right company
+      if company["universal_name"] == company_name.downcase || company["name"].downcase == company_name.downcase 
+            
+            if company["industries"]["total"] == "1"
+              in_id = company["industries"]["industry"]["code"]
+            else
+              in_id = company["industries"]["industry"][0]["code"]
+            end
+            id = Industry.find_by_code(in_id).id
+            
+            the_company = Company.find(company_id)
+            the_company.update(   description: company["description"],
+                                  website: company["website_url"],
+                                  logo_url: company["logo_url"],
+                                  industry_id: id,
+                                  employee_count_range: company["employee_count_range"]["name"])
+            the_company.logo_from_url company["logo_url"] 
+            the_company.save
+            return true
+      end 
+    end
+    
+    #Not found
+    puts "Company Not Found"
+    return false    
+  end
+  
+  # save bulk of companies
+  def get_companies   
+    
+       prepare_token
  
             #Use the access token to make an authenticated API call
             #api = 'https://api.linkedin.com/v1/companies/1337:(id,name,universal-name,website-url,industries,description,logo-url,employee-count-range)'
             api = 'https://api.linkedin.com/v1/company-search:(facets:(code,buckets:(code,name,count)),companies:(id,name,universal-name,website-url,industries,description,logo-url,employee-count-range,locations:(address:(region-code))))?facets=location,industry&facet=location,us:84&facet=industry,6&count=300&start=20'
             #api = 'https://api.linkedin.com/v1/companies/1337:(id,name,ticker,description)'
-            @response = access_token.get(api)
+            @response = @access_token.get(api)
  
             #Print body of response to command line window
             puts @response.body
@@ -58,11 +167,7 @@ class LinkedinController < ApplicationController
             
             hashs = Hash.from_xml(@response.body)
             
-            if hashs.nil?
-              puts "1 Hash is NULL !!!"
-            elsif hashs["company-search"].nil?
-              puts "2 Hash is NULL !!!"
-            end
+           
             
             hashs["company_search"]["companies"]["company"].each do |hash|
             
@@ -94,7 +199,18 @@ class LinkedinController < ApplicationController
               when Net::HTTPForbidden
                 # Handle 403 Forbidden response
             end
-        end
+    end
+    
+    def prepare_token
+            # get token from config xml file
+            token = File.read(TOKEN_FILE)
+            
+            #Use token object to create access token for user
+            #(this is required so that you provide the correct param name for the access token)
+            @access_token = OAuth2::AccessToken.new(client, token, {
+              :mode => :query,
+              :param_name => "oauth2_access_token",
+              })     
     end
 
 end

@@ -1,0 +1,49 @@
+<% if @company.instance_of?(Company) %>
+<table class="table table-hover">
+  <tr>
+  	<th></th>
+    <th>公司</th>
+    <th>领域</th>
+    <th>关于</th>
+    <th>规模</th>
+    <th>网址</th>
+    <th></th>
+    <th></th>
+  </tr>
+ 
+  
+    <tr>
+      <td><%= image_tag @company.logo.url(:medium) %></td>
+      <td><%= link_to @company.name, company_path(@company) %></td>
+      <td><%= @company.industry.name %></td>
+      
+ 	
+      <td>
+      	<button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#company<%= @company.id %>">
+			关于....
+		</button>
+		<div id="company<%= @company.id %>" class="collapse"><%= @company.description %></div>
+      </td>
+      
+      
+      
+      <td><%= @company.employee_count_range %></td>
+      <td><%= @company.website %></td>
+    
+    </tr>
+  
+</table>
+<%else%>
+
+<h1>Woops, Company Not found</h1>
+
+
+      <td>
+      	<button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#company">
+			Linkedin Api 返回
+		</button>
+		<div id="company" class="collapse"><%= @company %></div>
+      </td>
+      
+
+<%end%>
