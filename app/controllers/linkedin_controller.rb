@@ -63,7 +63,7 @@ class LinkedinController < ApplicationController
     company_name_ = company_name.gsub(" ", "%20")
     prepare_token
     #api = 'https://api.linkedin.com/v1/companies/1337:(id,name,universal-name,website-url,industries,description,logo-url,employee-count-range)'
-    api = 'https://api.linkedin.com/v1/company-search:(companies:(id,name,universal-name,website-url,industries,description,logo-url,employee-count-range))?count=20&keywords=' + company_name_
+    api = 'https://api.linkedin.com/v1/company-search:(companies:(id,name,universal-name,website-url,industries,description,logo-url,employee-count-range,specialties))?count=20&keywords=' + company_name_
     #api = 'https://api.linkedin.com/v1/companies/1337:(id,name,ticker,description)'   
     @response = @access_token.get(api)
     
@@ -86,10 +86,17 @@ class LinkedinController < ApplicationController
             end
             id = Industry.find_by_code(in_id).id
             
+            if company.has_key?("specialties")
+              company_specialties = company["specialties"]["specialty"].to_s
+            else
+              company_specialties = nil
+            end
+            
             new_company = Company.new(name: company["name"],
                                   description: company["description"],
                                   website: company["website_url"],
                                   logo_url: company["logo_url"],
+                                  tags: company_specialties,
                                   industry_id: id,
                                   employee_count_range: company["employee_count_range"]["name"])
             new_company.logo_from_url company["logo_url"] 

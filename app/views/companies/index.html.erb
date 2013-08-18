@@ -7,29 +7,32 @@
 <table class="table table-hover">
  
   <% @companies.each do |company| %>
-    <tr>
-      <table class="table" >
-      	<tr>
-      		<td><%= image_tag company.logo.url(:medium) %></td>
+  <tr><td>
+	<div class="row">
+      		<div class="span2"><%= image_tag company.logo.url(:medium) %></div>
       	
-      			<td><%= link_to company.name, company_path(company) %></br>
+      		<div class="span8"><strong><%= link_to company.name, company_path(company) %></strong></br>
       				<%= company.industry.name %></br>
       				<%= company.employee_count_range %>
-      			</td>
+      		</div>
       
-        </tr>
-      	<tr>
-      		<td>关于</td>
-      <td>
+    </div>
+    <div class="row">
+    	<div class="span2">Tags</div>
+    	<div class="span8"><%= company.tags %></div>
+    </div>
+    <div class="row">
+      		<div class="span2">关于</div>
+      <div class="span8">
       	<button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#company<%= company.id %>">
 			关于....
 		</button>
 		<div id="company<%= company.id %>" class="collapse"><%= company.description %></div>
-      </td>
+      </div>
       
-        </tr>
-      </table>
-    </tr>
+     </div>
+   
+    </td></tr>
 
   <% end %>
 </table>

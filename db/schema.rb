@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130815011917) do
+ActiveRecord::Schema.define(version: 20130818213010) do
 
   create_table "china_cities", force: true do |t|
     t.string   "province"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20130815011917) do
     t.string   "employee_count_range"
     t.boolean  "is_active"
     t.boolean  "is_verified"
+    t.text     "tags"
   end
 
   add_index "companies", ["industry_id"], name: "index_companies_on_industry_id", using: :btree
