@@ -5,24 +5,21 @@
 <br />
 
 <table class="table table-hover">
-  <tr>
-  	<th></th>
-    <th>公司</th>
-    <th>领域</th>
-    <th>关于</th>
-    <th>规模</th>
-    <th>网址</th>
-    <th></th>
-    <th></th>
-  </tr>
  
   <% @companies.each do |company| %>
     <tr>
-      <td><%= image_tag company.logo.url(:medium) %></td>
-      <td><%= link_to company.name, company_path(company) %></td>
-      <td><%= company.industry.name %></td>
+      <table class="table" >
+      	<tr>
+      		<td><%= image_tag company.logo.url(:medium) %></td>
+      	
+      			<td><%= link_to company.name, company_path(company) %></br>
+      				<%= company.industry.name %></br>
+      				<%= company.employee_count_range %>
+      			</td>
       
- 	
+        </tr>
+      	<tr>
+      		<td>关于</td>
       <td>
       	<button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#company<%= company.id %>">
 			关于....
@@ -30,14 +27,9 @@
 		<div id="company<%= company.id %>" class="collapse"><%= company.description %></div>
       </td>
       
-      
-      
-      <td><%= company.employee_count_range %></td>
-      <td><%= company.website %></td>
-      <% if current_user.try(:admin?) %>
-      <td><%= link_to '编辑', edit_company_path(company) %></td>
- 	  <td><%= link_to '删除', company_path(company), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
+        </tr>
+      </table>
     </tr>
+
   <% end %>
 </table>

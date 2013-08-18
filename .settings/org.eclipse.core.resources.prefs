@@ -3,6 +3,7 @@ encoding//app/controllers/refer_cases_controller.rb=UTF-8
 encoding//app/mailers/refer_request_mailer.rb=UTF-8
 encoding//app/views/companies/edit.html.erb=UTF-8
 encoding//app/views/companies/index.html.erb=UTF-8
+encoding//app/views/companies/index__.html.erb=UTF-8
 encoding//app/views/companies/new.html.erb=UTF-8
 encoding//app/views/companies/show.html.erb=UTF-8
 encoding//app/views/connect_request_mailer/connect_request.html.erb=UTF-8

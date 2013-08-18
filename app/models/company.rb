@@ -7,9 +7,9 @@ class Company < ActiveRecord::Base
   belongs_to :industry
   
   #Paperclip
-  has_attached_file :logo, :styles => { :medium => "900x300>", 
-                                          :small => "300x100>", 
-                                          :thumb => "150x50>" }, 
+  has_attached_file :logo, :styles => { :medium => "300x300>", 
+                                          :small => "120x120>", 
+                                          :thumb => "60x60>" }, 
                               :default_url => "/images/companies/defaultLogo_:style.jpg"
 
   def logo_from_url(url)
