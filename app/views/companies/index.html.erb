@@ -1,6 +1,4 @@
-<% if current_user.try(:admin?) %>
-<%= link_to '添加公司', new_company_path, class: "btn btn-primary" %>
-<% end %>
+
 <br />
 <br />
 
@@ -8,29 +6,37 @@
  
   <% @companies.each do |company| %>
   <tr><td>
-	<div class="row">
+  	<div class="container">
+	 <div class="row-fluid">
       		<div class="span2"><%= image_tag company.logo.url(:medium) %></div>
-      	
-      		<div class="span8"><strong><%= link_to company.name, company_path(company) %></strong></br>
-      				<%= company.industry.name %></br>
-      				<%= company.employee_count_range %>
-      		</div>
-      
+      		<div class="span10"><strong><%= link_to company.name, company_path(company) %></strong></br>
+      				<%= company.industry.name_cn %></br>
+      				<%= company.employee_count_range %>员工
+      		</div>  
+    	</div>
     </div>
-    <div class="row">
-    	<div class="span2">Tags</div>
-    	<div class="span8"><%= company.tags %></div>
+    
+    <div class="container">
+    	<div class="row">
+    		<div class="span1 offset1"></div>
+    		<% tags = company.tags.gsub('"', '').gsub('[', '').gsub(']', '') if not company.tags.nil? %>
+    		
+    		
+    		<div class="span10"><p class="tags"><span><%= tags %></span></p></div>
+    	</div>
     </div>
-    <div class="row">
-      		<div class="span2">关于</div>
-      <div class="span8">
-      	<button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#company<%= company.id %>">
-			关于....
-		</button>
-		<div id="company<%= company.id %>" class="collapse"><%= company.description %></div>
+    
+    <div class="container">
+    	<div class="row">
+    	<div class="span2"></div>
+    	<div class="span10">
+    	 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#company<%= company.id %>">
+			关于		 </a>
+		 <div id="company<%= company.id %>" class="collapse"><p><%= company.description %></p></div>
       </div>
-      
+      </div>
      </div>
+     
    
     </td></tr>
 

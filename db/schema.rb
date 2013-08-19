@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130818213010) do
+ActiveRecord::Schema.define(version: 20130819004006) do
 
   create_table "china_cities", force: true do |t|
     t.string   "province"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20130818213010) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "code"
+    t.string   "name_cn"
   end
 
   create_table "job_posts", force: true do |t|

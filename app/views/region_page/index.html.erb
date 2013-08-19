@@ -1,19 +1,44 @@
+
+<br />
+<br />
+
 <table class="table table-hover">
-  <tr>
-  	<th></th>
-    <th>公司</th>
-    <th>关于</th>
-    <th>网址ַ</th>
-    <th></th>
-    <th></th>
-  </tr>
  
   <% @companies.each do |company| %>
-    <tr>
-      <td><%= image_tag company.logo.url(:thumb) %></td>
-      <td><%= link_to company.name, company_path(company) %></td>
-      <td><%= company.description %></td>
-      <td><%= company.website %></td>
-    </tr>
+  <tr><td>
+  	<div class="container">
+	 <div class="row-fluid">
+      		<div class="span2"><%= image_tag company.logo.url(:medium) %></div>
+      		<div class="span10"><strong><%= link_to company.name, company_path(company) %></strong></br>
+      				<%= company.industry.name_cn %></br>
+      				<%= company.employee_count_range %>员工
+      		</div>  
+    	</div>
+    </div>
+    
+    <div class="container">
+    	<div class="row">
+    		<div class="span1 offset1"></div>
+    		<% tags = company.tags.gsub('"', '').gsub('[', '').gsub(']', '') if not company.tags.nil? %>
+    		
+    		
+    		<div class="span10"><p class="tags"><span><%= tags %></span></p></div>
+    	</div>
+    </div>
+    
+    <div class="container">
+    	<div class="row">
+    	<div class="span2"></div>
+    	<div class="span10">
+    	 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#company<%= company.id %>">
+			关于		 </a>
+		 <div id="company<%= company.id %>" class="collapse"><p><%= company.description %></p></div>
+      </div>
+      </div>
+     </div>
+     
+   
+    </td></tr>
+
   <% end %>
 </table>
