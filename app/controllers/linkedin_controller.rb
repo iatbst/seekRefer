@@ -63,7 +63,7 @@ class LinkedinController < ApplicationController
     company_name_ = company_name.gsub(" ", "%20")
     prepare_token
     #api = 'https://api.linkedin.com/v1/companies/1337:(id,name,universal-name,website-url,industries,description,logo-url,employee-count-range)'
-    api = 'https://api.linkedin.com/v1/company-search:(companies:(id,name,universal-name,website-url,industries,description,logo-url,employee-count-range,specialties))?count=20&keywords=' + company_name_
+    api = 'https://api.linkedin.com/v1/company-search:(companies:(id,name,universal-name,website-url,industries,description,logo-url,employee-count-range,specialties,founded-year,locations))?count=20&keywords=' + company_name_
     #api = 'https://api.linkedin.com/v1/companies/1337:(id,name,ticker,description)'   
     @response = @access_token.get(api)
     
@@ -94,11 +94,12 @@ class LinkedinController < ApplicationController
             
             new_company = Company.new(name: company["name"],
                                   description: company["description"],
-                                  website: company["website_url"],
+                                  website: url_with_protocol(company["website_url"]),
                                   logo_url: company["logo_url"],
                                   tags: company_specialties,
                                   industry_id: id,
-                                  employee_count_range: company["employee_count_range"]["name"])
+                                  employee_count_range: company["employee_count_range"]["name"],
+                                  founded_year: company["founded_year"])
             new_company.logo_from_url company["logo_url"] 
             new_company.save
             return new_company
@@ -142,10 +143,12 @@ class LinkedinController < ApplicationController
             
             the_company = Company.find(company_id)
             the_company.update(   description: company["description"],
-                                  website: company["website_url"],
+                                  website: url_with_protocol(company["website_url"]),
                                   logo_url: company["logo_url"],
+                                  tags: company_specialties,
                                   industry_id: id,
-                                  employee_count_range: company["employee_count_range"]["name"])
+                                  employee_count_range: company["employee_count_range"]["name"],
+                                  founded_year: company["founded_year"])
             the_company.logo_from_url company["logo_url"] 
             the_company.save
             return true
@@ -218,6 +221,10 @@ class LinkedinController < ApplicationController
               :mode => :query,
               :param_name => "oauth2_access_token",
               })     
+    end
+    
+    def url_with_protocol(url)
+      /^http/.match(url) ? url : "http://#{url}"
     end
 
 end

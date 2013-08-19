@@ -1,26 +1,38 @@
-<div class="container-fluid">
-    <div class="row-fluid">
-    	<div class="span5">
-    		<%= image_tag @company.logo.url(:medium) %>
-    	</div>
-    	<div class="span5">
-    		<!--Body content-->
-    		<div class="row-fluid">
-  				<div class="span2">公司</div>
-  				<div class="span8"><%= @company.name %></div>
-			</div>
-			<div class="row-fluid">
-  				<div class="span2">关于</div>
-  				<div class="span8"><%= @company.description %></div>
-			</div>
-			<div class="row-fluid">
-  				<div class="span2">网址</div>
-  				<div class="span8"><%= @company.website %></div>
-			</div>   	
-    			
+<table class="table table-hover">
+  <tr><td>
+  	<div class="container">
+	 <div class="row-fluid">
+      		<div class="span2"><%= image_tag @company.logo.url %></div>
+      		<div class="span10"><strong><%= @company.name %></strong></br>
+      				<%= @company.industry.name_cn %></br>
+      				<%= @company.founded_year %>年成立&nbsp;&nbsp;<%= @company.employee_count_range %>员工</br>
+      				<%= link_to @company.website, @company.website,:target => '_blank' %>
+      		</div>  
     	</div>
     </div>
-</div>
+    
+    <div class="container">
+    	<div class="row">
+    		<div class="span2"></div>
+    		<% tags = @company.tags.gsub('"', '').gsub('[', '').gsub(']', '') if not @company.tags.nil? %>
+    		
+    		
+    		<div class="span10"><p class="tags"><span><%= tags %></span></p></div>
+    	</div>
+    </div>
+    
+    <div class="container">
+    	<div class="row">
+    	<div class="span2"></div>
+    	<div class="span10">
+		 <p><%= @company.description %></p>
+      </div>
+      </div>
+     </div>
+     
+   
+    </td></tr>
+</table>
 
 
 <br />
@@ -29,27 +41,23 @@
 <br />
 
 <table class="table table-hover">
-  <tr>
-  	<th></th>
-    <th>用户名</th>
-    <th>部门</th>
-    <th>职位</th>  
-    <th></th>
-  </tr>
  
   <% @users.each do |user| %>
-    <tr>
-    	  <td><%= image_tag user.avatar.url(:thumb) %></td>
-      <td><%= user.name %></td>
-      <td><%= user.dept %></td>
-      <td><%= user.position %></td>
-      <% if current_user.try(:admin?) %>
-      <td><%= user.email %></td>
-      <% end %>
-      <td><%= link_to '联系请求', :controller => "connect_requests", :action => "send_request", :id => user.id %></td>
-    </tr>
+  <tr><td>
+  	<div class="container">
+	 <div class="row-fluid">
+      		<div class="span2"><%= image_tag user.avatar.url(:small) %></div>
+      		<div class="span10"><strong><%= link_to user.name, user_path(user) %></strong></br>
+      				部门:<%= user.dept %>&nbsp;&nbsp;职位:<%= user.position %></br>
+      				<%= user.hometown.province %></br>
+      				<%= user.china_school1.name %></br>
+      				<%= user.us_school1.name %>
+      		</div>  
+    	</div>
+    </div>
+   
+    </td></tr>
+
   <% end %>
 </table>
-
-<%= link_to '公司列表', companies_path %>
 

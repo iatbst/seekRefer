@@ -22,9 +22,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   
   #Paperclip
-  has_attached_file :avatar, :styles => { :medium => "150x150>", 
-                                          :small => "100x100>", 
-                                          :thumb => "50x50>" }, 
+  has_attached_file :avatar, :styles => { :medium => "150x150#", 
+                                          :small => "100x100#", 
+                                          :thumb => "50x50#>" }, 
                               :default_url => "/images/users/defaultAvatar_:style.png"
                               
                               

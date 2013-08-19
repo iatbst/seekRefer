@@ -8,10 +8,11 @@
   <tr><td>
   	<div class="container">
 	 <div class="row-fluid">
-      		<div class="span2"><%= image_tag company.logo.url(:medium) %></div>
+      		<div class="span2"><%= image_tag company.logo.url %></div>
       		<div class="span10"><strong><%= link_to company.name, company_path(company) %></strong></br>
       				<%= company.industry.name_cn %></br>
-      				<%= company.employee_count_range %>员工
+      				<%= company.founded_year %>年成立&nbsp;&nbsp;<%= company.employee_count_range %>员工</br>
+      				<%= link_to company.website, company.website,:target => '_blank' %>
       		</div>  
     	</div>
     </div>
