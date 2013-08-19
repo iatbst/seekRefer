@@ -1,0 +1,538 @@
+-- MySQL dump 10.13  Distrib 5.6.12, for osx10.8 (x86_64)
+--
+-- Host: localhost    Database: seekRefer_development
+-- ------------------------------------------------------
+-- Server version	5.6.12
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `china_cities`
+--
+
+DROP TABLE IF EXISTS `china_cities`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `china_cities` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `province` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `china_cities`
+--
+
+LOCK TABLES `china_cities` WRITE;
+/*!40000 ALTER TABLE `china_cities` DISABLE KEYS */;
+INSERT INTO `china_cities` VALUES (1,'河南',NULL,NULL,NULL),(2,'上海',NULL,NULL,NULL),(3,'北京',NULL,NULL,NULL),(4,'山东',NULL,NULL,NULL);
+/*!40000 ALTER TABLE `china_cities` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `china_colleges`
+--
+
+DROP TABLE IF EXISTS `china_colleges`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `china_colleges` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `province` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `china_colleges`
+--
+
+LOCK TABLES `china_colleges` WRITE;
+/*!40000 ALTER TABLE `china_colleges` DISABLE KEYS */;
+INSERT INTO `china_colleges` VALUES (1,NULL,'浙江大学',NULL,NULL),(2,NULL,'上海交通大学',NULL,NULL),(3,NULL,'北京大学',NULL,NULL),(4,NULL,'清华大学',NULL,NULL);
+/*!40000 ALTER TABLE `china_colleges` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `companies`
+--
+
+DROP TABLE IF EXISTS `companies`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `companies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `website` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `logo_file_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `logo_content_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `logo_file_size` int(11) DEFAULT NULL,
+  `logo_updated_at` datetime DEFAULT NULL,
+  `industry_id` int(11) DEFAULT NULL,
+  `logo_url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `employee_count_range` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT NULL,
+  `is_verified` tinyint(1) DEFAULT NULL,
+  `tags` text COLLATE utf8_unicode_ci,
+  `founded_year` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_companies_on_industry_id` (`industry_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `companies`
+--
+
+LOCK TABLES `companies` WRITE;
+/*!40000 ALTER TABLE `companies` DISABLE KEYS */;
+INSERT INTO `companies` VALUES (68,'Microsoft','Come as you are. Do what you love. \n\nAt Microsoft we help people and businesses throughout the world realize their full potential. \n\nWe make this simple mission come to life every day through our passion to create technologies and develop products that touch just about every kind of customer. \n\nWorking at Microsoft gives you the opportunity to do things that make a real difference in millions, even billions, of lives. To reach your full potential. \n\nSo why not take a closer look at Microsoft? We think you’ll find that amazing things really do happen here.','http://www.microsoft.com/','2013-08-18 21:39:44','2013-08-18 21:39:44','2042035.png','image/png',386,'2013-08-18 21:39:44',19,'http://m.c.lnkd.licdn.com/mpr/mpr/p/1/000/1c0/2ef/2042035.png','10001+',NULL,NULL,'[\"Business Software\", \"Design Tools\", \"Developer Tools\", \"Entertainment Products\", \"Hardware\", \"Home & Educational Software\", \"Mobile Devices & Software\", \"Search\", \"Advertising\", \"Servers\", \"Windows Operating System\", \"Windows Applications & Platforms\", \"Windows Live\", \"Cloud Computing\"]',NULL),(69,'Zynga','Zynga was founded in 2007 with the vision that play would become one of the core activities on the Internet. We pioneered social games with the belief that if we could make games simple, accessible and social the world would start playing. We are excited that games have grown to become the second most popular activity by time spent, even surpassing email. But we have a lot of hard work, innovation and growth ahead of us to create a future where social gaming is a daily habit for everyone.','http://www.zynga.com','2013-08-18 21:52:16','2013-08-18 21:52:16','197f82b.png','image/png',2313,'2013-08-18 21:52:15',16,'http://m.c.lnkd.licdn.com/mpr/mpr/p/3/000/204/36d/197f82b.png','1001-5000',NULL,NULL,NULL,NULL),(70,'Juniper Networks','Juniper Networks is leading the revolution in networking, making it one of the most exciting technology companies in Silicon Valley today. Since being founded by Pradeep Sindhu, Dennis Ferguson, and Bjorn Liencres more than 14 years ago, Juniper’s sole mission has been to create innovative products and solutions that meet the growing demands of the connected world.\n\nJuniper is pioneering innovation on the network with the New Network, an architecture that is comprised of network hardware innovations supported by a consistent, unique, single operating system, Junos, as well as client and server-based software products that enhance network performance and user experience.\n\nJuniper Networks [NYSE: JNPR] is headquartered in Sunnyvale, California, with over 9,000 employees in 70 countries with over $4 billion in revenue.. Our customers include the top 100 global service providers, 30,000 enterprises, including all of the Global Fortune 100, as well as hundreds of federal, state and local government agencies and higher educational organizations.\n \nTo learn more about Juniper, our products, and our vision for the decade ahead, visit our site at www.juniper.net.','http://www.juniper.net','2013-08-18 21:54:08','2013-08-18 21:54:08','0628e92.png','image/png',2167,'2013-08-18 21:54:08',18,'http://m.c.lnkd.licdn.com/mpr/mpr/p/3/000/03c/053/0628e92.png','5001-10000',NULL,NULL,'[\"Networking\", \"Routers\", \"Switches\", \"Security\", \"Junos Operating System\", \"VPN\", \"Junos Space\", \"Junos Pulse\"]',NULL),(71,'Evernote','Evernote allows you to easily capture information in any environment using whatever device or platform you find most convenient, and makes this information accessible and searchable at any time, from anywhere.\n\nEvernote is ideal for jotting notes, clipping web pages, taking camera phone snapshots, creating to-do lists, and recording audio notes. Once in Evernote, notes are analyzed and made searchable, even text within images.\n\nEvernote has full-featured clients available for Web, Windows, Mac, and mobile devices. All data in Evernote is sent to the cloud and then synchronized across all platforms and devices.','http://www.evernote.com','2013-08-18 23:29:08','2013-08-18 23:29:08','12dbd64.png','image/png',7641,'2013-08-18 23:29:08',19,'http://m.c.lnkd.licdn.com/mpr/mpr/p/3/000/016/3ab/12dbd64.png','201-500',NULL,NULL,'[\"software\", \"mobile application\"]',NULL),(72,'Google','Google’s mission is to organize the world‘s information and make it universally accessible and useful. \n\nSince our founding in 1998, Google has grown by leaps and bounds. From offering search in a single language we now offer dozens of products and services—including various forms of advertising and web applications for all kinds of tasks—in scores of languages. And starting from two computer science students in a university dorm room, we now have thousands of employees and offices around the world. A lot has changed since the first Google search engine appeared. But some things haven’t changed: our dedication to our users and our belief in the possibilities of the Internet itself.','http://www.google.com','2013-08-18 23:49:03','2013-08-18 23:49:03','080cae8.png','image/png',3949,'2013-08-18 23:49:03',23,'http://m.c.lnkd.licdn.com/mpr/mpr/p/3/000/062/2ff/080cae8.png','10001+',NULL,NULL,'[\"search\", \"ads\", \"mobile\", \"android\", \"online video\"]',NULL),(73,'Facebook','Founded in 2004, Facebook’s mission is to make the world more open and connected. People use Facebook to stay connected with friends and family, to discover what’s going on in the world, and to share and express what matters to them. \n\nOther ways to connect with us:\nVisit the Facebook Blog at: blog.facebook.com\nEngineering blog at: facebook.com/engineering\nFind out about Career Opportunities at: facebook.com/careers\nSubscribe to more videos at: youtube.com/facebook','http://www.facebook.com/','2013-08-19 00:32:11','2013-08-19 00:32:11','31058a4.png','image/png',1919,'2013-08-19 00:32:11',23,'http://m.c.lnkd.licdn.com/mpr/mpr/p/4/000/148/365/31058a4.png','1001-5000',NULL,NULL,NULL,NULL),(74,'Amazon','Amazon strives to be Earth\'s most customer-centric company where people can find and discover virtually anything they want to buy online. By giving customers more of what they want - low prices, vast selection, and convenience - Amazon continues to grow and evolve as a world-class e-commerce platform.\n\nFounded by Jeff Bezos, the Amazon.com website started in 1995 as a place to buy books because of the unique customer experience the Web could offer book lovers. Bezos believed that only the Internet could offer customers the convenience of browsing a selection of millions of book titles in a single sitting. During the first 30 days of business, Amazon fulfilled orders for customers in 50 states and 45 countries - all shipped from his Seattle-area garage.\n\nAmazon\'s evolution from Web site to e-commerce partner to development platform is driven by the spirit of innovation that is part of the company\'s DNA. The world\'s brightest technology minds come to Amazon.com to research and develop technology that improves the lives of shoppers and sellers around the world.\n\nFollow us on Facebook:  www.Facebook.com/InsideAmazon','http://www.amazon.com','2013-08-19 00:33:39','2013-08-19 00:33:39','1446482.png','image/png',1495,'2013-08-19 00:33:39',23,'http://m.c.lnkd.licdn.com/mpr/mpr/p/3/000/1f1/38e/1446482.png','10001+',NULL,NULL,'[\"e-Commerce\", \"Retail\", \"Operations\", \"Internet\"]',NULL),(75,'Intel Corporation','Creating and extending computing technology to connect and enrich the lives of every person on Earth--that\'s our vision, is it yours? We are changing the world at Intel. Through our technical innovation, our endless efforts in education, environmental sustainability, healthcare, and much, much more. \n\nThe range of computing products based on Intel® architecture goes beyond PCs and servers and extends to phones, tablets, consumer electronics devices, and more. We are the world\'s largest semiconductor chip maker, based on revenue. Platforms are designed and configured to work together to provide an optimized user computing solution--one that is seamless, connected and puts the user at the center. \n\nStep inside our world and you’ll find one brilliant mind after another working together in a spirit of collaboration that is simply contagious. And through this shared dedication—this culture of innovation and exploration—we do more than deliver the latest technologies. We deliver the future. See for yourself. Look Inside.','http://www.intel.com','2013-08-19 01:02:15','2013-08-19 01:02:15','230fde5.png','image/png',4195,'2013-08-19 01:02:15',24,'http://m.c.lnkd.licdn.com/mpr/mpr/p/2/000/014/1bf/230fde5.png','10001+',NULL,NULL,'semiconductor design and manufacturing',NULL),(76,'Samsung','Welcome to Samsung. For over 70 years, Samsung has been dedicated to making a better world through diverse business that today span advanced technology, semiconductors, skyscraper and plant construction, petrochemicals, fashion, medicine, finance, hotels, and more. Our flagship company, Samsung Electronics, leads the global market in high-tech electronics manufacturing and digital media.\n\nThrough innovative, reliable products and services; talented people; a responsible approach to business and global citizenship; and collaboration with our partners and customers, Samsung is taking the world in imaginative new direction.\n\nSamsung is comprised of companies that are setting new standards in a wide range of businesses, from consumer electronics to petrochemicals, from advertising to life insurance. They share a commitment to creating innovative, high quality products that are relied on every day by millions of people and businesses around the world.','http://www.samsung.com','2013-08-19 01:07:17','2013-08-19 01:07:17','1b90a79.png','image/png',2600,'2013-08-19 01:07:17',27,'http://m.c.lnkd.licdn.com/mpr/mpr/p/1/000/058/2de/1b90a79.png','10001+',NULL,NULL,'[\"Electronics Industries\", \"Machinery & Heavy Industries\", \"Chemical Industries\", \"Fianancial Services\", \"Others\"]',NULL),(77,'Yelp','Yelp connects people with great local businesses. Our users have contributed more than 36 million cumulative reviews of almost every type of local business, from restaurants, boutiques and salons to dentists, mechanics, plumbers and more. These reviews are written by people using Yelp to share their everyday local business experiences, giving voice to consumers and bringing “word of mouth” online. The information these reviews provide is valuable for consumers and businesses alike. Approximately 86 million unique visitors* used our website, and our mobile application was used on approximately 9.2 million unique mobile devices, on a monthly average basis during the quarter ended December 31, 2012. Businesses, both small and large, use our platform to engage with consumers at the critical moment when they are deciding where to spend their money. Our business revolves around three key constituencies: the contributors who write reviews, the consumers who read them and the local businesses that they describe. Yelp communities have taken root in major metros across the US, Canada, UK, Ireland, France, Germany, Austria, The Netherlands, Spain, Italy, Switzerland, Belgium, Australia, Sweden, Denmark, Norway, Finland, Singapore, Poland and Turkey.','http://www.yelp.com','2013-08-19 01:34:11','2013-08-19 01:34:11','3df06e1.png','image/png',10373,'2013-08-19 01:34:11',23,'http://m.c.lnkd.licdn.com/mpr/mpr/p/3/000/218/0b4/3df06e1.png','1001-5000',NULL,NULL,'Connecting people with great local businesses',NULL),(78,'Twitter','Twitter is a real-time information network that connects you to the latest stories, ideas, opinions and news about what you find interesting. Simply find the accounts you find most compelling and follow the conversations.\n\nAt the heart of Twitter are small bursts of information called Tweets. Each Tweet is 140 characters long, but don’t let the small size fool you—you can discover a lot in a little space. You can see photos, videos and conversations directly in Tweets to get the whole story at a glance, and all in one place.','http://twitter.com','2013-08-19 01:36:04','2013-08-19 01:36:04','0f6b64f.png','image/png',1005,'2013-08-19 01:36:04',23,'http://m.c.lnkd.licdn.com/mpr/mpr/p/2/000/1e8/3f9/0f6b64f.png','1001-5000',NULL,NULL,'Real-time information',NULL),(79,'Pinterest','Pinterest is a tool for discovering things you love, and doing those things in real life. Ben Silbermann, Evan Sharp and Paul Sciarra co-founded our site in March 2010. Since then, we’ve helped millions of people pick up new hobbies, find their style and plan life’s important projects.','http://www.pinterest.com','2013-08-19 01:38:03','2013-08-19 01:38:03','2e33491.png','image/png',2954,'2013-08-19 01:38:03',23,'http://m.c.lnkd.licdn.com/mpr/mpr/p/4/000/14a/262/2e33491.png','51-200',NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `companies` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `connect_requests`
+--
+
+DROP TABLE IF EXISTS `connect_requests`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `connect_requests` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `accepted` tinyint(1) DEFAULT NULL,
+  `from_id` int(11) DEFAULT NULL,
+  `to_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_connect_requests_on_from_id` (`from_id`),
+  KEY `index_connect_requests_on_to_id` (`to_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `connect_requests`
+--
+
+LOCK TABLES `connect_requests` WRITE;
+/*!40000 ALTER TABLE `connect_requests` DISABLE KEYS */;
+INSERT INTO `connect_requests` VALUES (4,'2013-08-01 18:47:58','2013-08-01 18:48:07','VX2gu_BuxnlXB0lATN5NDQ',1,3,1),(5,'2013-08-01 18:50:49','2013-08-01 18:51:51','fH_XFzejFUGmgB9-kyZl7A',1,3,2),(6,'2013-08-01 21:06:51','2013-08-01 21:06:51','7hhYQW_DIPiSz4bK3Eo0WQ',0,1,3),(7,'2013-08-11 20:14:44','2013-08-11 20:14:44','08VCV1kumJTaws36U40YcQ',0,1,1),(8,'2013-08-11 20:15:18','2013-08-11 20:15:18','bS7a_5xYaH8JjN_2MmTAQw',0,1,2);
+/*!40000 ALTER TABLE `connect_requests` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `connects`
+--
+
+DROP TABLE IF EXISTS `connects`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `connects` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `from_id` int(11) DEFAULT NULL,
+  `to_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_connects_on_from_id` (`from_id`),
+  KEY `index_connects_on_to_id` (`to_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `connects`
+--
+
+LOCK TABLES `connects` WRITE;
+/*!40000 ALTER TABLE `connects` DISABLE KEYS */;
+INSERT INTO `connects` VALUES (5,'2013-08-01 18:48:07','2013-08-01 18:48:07',3,1),(6,'2013-08-01 18:48:07','2013-08-01 18:48:07',1,3),(7,'2013-08-01 18:51:51','2013-08-01 18:51:51',3,2),(8,'2013-08-01 18:51:51','2013-08-01 18:51:51',2,3);
+/*!40000 ALTER TABLE `connects` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `follow_rules`
+--
+
+DROP TABLE IF EXISTS `follow_rules`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `follow_rules` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `company_id` int(11) DEFAULT NULL,
+  `location_id` int(11) DEFAULT NULL,
+  `industry_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `follower_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_follow_rules_on_company_id` (`company_id`),
+  KEY `index_follow_rules_on_location_id` (`location_id`),
+  KEY `index_follow_rules_on_industry_id` (`industry_id`),
+  KEY `index_follow_rules_on_follower_id` (`follower_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `follow_rules`
+--
+
+LOCK TABLES `follow_rules` WRITE;
+/*!40000 ALTER TABLE `follow_rules` DISABLE KEYS */;
+INSERT INTO `follow_rules` VALUES (2,2,1,1,'2013-08-11 21:12:26','2013-08-11 21:12:26',3),(3,3,1,1,'2013-08-11 21:12:57','2013-08-11 21:12:57',2),(5,3,1,2,'2013-08-11 21:26:41','2013-08-11 21:26:41',1),(6,NULL,1,1,'2013-08-11 21:31:55','2013-08-11 21:31:55',1),(7,1,1,3,'2013-08-11 21:34:54','2013-08-12 00:05:40',1),(8,NULL,1,3,'2013-08-12 00:05:04','2013-08-12 00:05:22',3),(9,NULL,1,NULL,'2013-08-12 23:19:45','2013-08-12 23:19:45',1);
+/*!40000 ALTER TABLE `follow_rules` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `industries`
+--
+
+DROP TABLE IF EXISTS `industries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `industries` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `code` int(11) DEFAULT NULL,
+  `name_cn` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `industries`
+--
+
+LOCK TABLES `industries` WRITE;
+/*!40000 ALTER TABLE `industries` DISABLE KEYS */;
+INSERT INTO `industries` VALUES (12,'Biotechnology',NULL,NULL,12,NULL),(13,'Chemicals',NULL,NULL,54,NULL),(14,'Civil Engineering',NULL,NULL,51,NULL),(15,'Computer & Network Security',NULL,NULL,118,NULL),(16,'Computer Games',NULL,NULL,109,'计算机游戏'),(17,'Computer Hardware',NULL,NULL,3,NULL),(18,'Computer Networking',NULL,NULL,5,'计算机网络'),(19,'Computer Software',NULL,NULL,4,'计算机软件'),(20,'Consumer Electronics',NULL,NULL,24,NULL),(21,'Financial Services',NULL,NULL,43,NULL),(22,'Information Technology and Services',NULL,NULL,96,NULL),(23,'Internet',NULL,NULL,6,'互联网'),(24,'Semiconductors',NULL,NULL,7,NULL),(25,'Telecommunications',NULL,NULL,9,NULL),(26,'Wireless',NULL,NULL,119,NULL),(27,'Electrical & Electronic Manufacturing',NULL,NULL,112,'电子消费品制造');
+/*!40000 ALTER TABLE `industries` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `job_posts`
+--
+
+DROP TABLE IF EXISTS `job_posts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `job_posts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `industry_id` int(11) DEFAULT NULL,
+  `company_id` int(11) DEFAULT NULL,
+  `location_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `poster_id` int(11) DEFAULT NULL,
+  `content` text COLLATE utf8_unicode_ci,
+  `position_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_job_posts_on_industry_id` (`industry_id`),
+  KEY `index_job_posts_on_company_id` (`company_id`),
+  KEY `index_job_posts_on_location_id` (`location_id`),
+  KEY `index_job_posts_on_poster_id` (`poster_id`),
+  KEY `index_job_posts_on_position_id` (`position_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `job_posts`
+--
+
+LOCK TABLES `job_posts` WRITE;
+/*!40000 ALTER TABLE `job_posts` DISABLE KEYS */;
+INSERT INTO `job_posts` VALUES (5,1,2,1,'2013-08-07 04:25:52','2013-08-07 04:25:52',3,'SoC Physical Design Engineer\r\n\r\nThis individual will contribute from RTL to GDS on block level designs.\r\nSpecific tasks will include but not limiting the following:\r\n-          design floor planning,\r\n-          place and route,\r\n-          CTS, timing analysis\r\n-          physical design verification.\r\n\r\nJob Requirements:\r\n-MSEE or MSCS w/ 3+ yrs experience of digital physical design.\r\n-Experience with RTL 2 GDSII concepts and flows.\r\n-Requires good programming/scripting skills in Perl, TCL or Python.\r\n-STA experience\r\n-Experience with industry standard toolsets from Cadence or Synopsys.\r\n-Experience of physical verification.\r\n-Excellent communication skills, both written and verbal.\r\n-Ability to work in a team environment',NULL),(6,1,3,2,'2013-08-07 04:27:12','2013-08-07 04:27:12',1,'SoC Physical Design Engineer\r\n\r\nThis individual will contribute from RTL to GDS on block level designs.\r\nSpecific tasks will include but not limiting the following:\r\n-          design floor planning,\r\n-          place and route,\r\n-          CTS, timing analysis\r\n-          physical design verification.\r\n\r\nJob Requirements:\r\n-MSEE or MSCS w/ 3+ yrs experience of digital physical design.\r\n-Experience with RTL 2 GDSII concepts and flows.\r\n-Requires good programming/scripting skills in Perl, TCL or Python.\r\n-STA experience\r\n-Experience with industry standard toolsets from Cadence or Synopsys.\r\n-Experience of physical verification.\r\n-Excellent communication skills, both written and verbal.\r\n-Ability to work in a team environment',NULL),(7,1,1,3,'2013-08-07 04:35:48','2013-08-07 04:36:06',2,'SoC Physical Design Engineer\r\n\r\nThis individual will contribute from RTL to GDS on block level designs.\r\nSpecific tasks will include but not limiting the following:\r\n-          design floor planning,\r\n-          place and route,\r\n-          CTS, timing analysis\r\n-          physical design verification.\r\n\r\nJob Requirements:\r\n-MSEE or MSCS w/ 3+ yrs experience of digital physical design.\r\n-Experience with RTL 2 GDSII concepts and flows.\r\n-Requires good programming/scripting skills in Perl, TCL or Python.\r\n-STA experience\r\n-Experience with industry standard toolsets from Cadence or Synopsys.\r\n-Experience of physical verification.\r\n-Excellent communication skills, both written and verbal.\r\n-Ability to work in a team environment',NULL),(8,1,2,5,'2013-08-07 20:48:39','2013-08-07 20:48:39',1,'we are the champions !!!!',NULL),(9,2,3,1,'2013-08-11 23:18:08','2013-08-11 23:18:08',1,'test~',NULL),(10,3,1,1,'2013-08-11 23:23:26','2013-08-11 23:23:26',1,'test',NULL),(11,3,3,1,'2013-08-11 23:25:00','2013-08-11 23:25:00',1,'test',NULL),(12,3,1,1,'2013-08-11 23:29:01','2013-08-11 23:29:01',1,'test',NULL),(13,3,2,1,'2013-08-11 23:39:19','2013-08-11 23:39:19',1,'test',NULL),(14,3,1,1,'2013-08-11 23:42:13','2013-08-11 23:42:13',1,'test',NULL),(15,3,2,1,'2013-08-11 23:44:23','2013-08-11 23:44:23',1,'test',NULL),(16,3,3,1,'2013-08-11 23:48:17','2013-08-11 23:48:17',1,'test',NULL),(17,3,3,1,'2013-08-11 23:49:26','2013-08-11 23:49:26',1,'test',NULL),(18,1,1,1,'2013-08-11 23:54:01','2013-08-11 23:54:01',1,'test',NULL),(19,1,2,1,'2013-08-12 00:02:58','2013-08-12 00:02:58',1,'test',NULL),(20,3,1,1,'2013-08-12 00:06:06','2013-08-12 00:06:06',1,'test',NULL),(21,3,1,1,'2013-08-12 00:07:33','2013-08-12 00:07:33',1,'test',NULL),(22,3,1,1,'2013-08-12 00:08:57','2013-08-12 00:08:57',1,'test',NULL),(23,3,1,1,'2013-08-12 00:20:35','2013-08-12 00:20:35',1,'test',NULL),(24,3,1,1,'2013-08-12 00:21:44','2013-08-12 00:21:44',1,'test',NULL),(25,1,1,1,'2013-08-12 20:39:59','2013-08-12 20:39:59',1,'test',NULL),(34,1,1,1,'2013-08-13 04:25:09','2013-08-13 04:25:09',1,'test',NULL),(39,1,1,1,'2013-08-13 04:54:39','2013-08-13 04:54:39',1,'test',NULL);
+/*!40000 ALTER TABLE `job_posts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `locations`
+--
+
+DROP TABLE IF EXISTS `locations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `locations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `locations`
+--
+
+LOCK TABLES `locations` WRITE;
+/*!40000 ALTER TABLE `locations` DISABLE KEYS */;
+INSERT INTO `locations` VALUES (1,'旧金山湾区',NULL,NULL),(2,'西雅图地区',NULL,NULL),(3,'大洛杉矶地区',NULL,NULL),(4,'纽约-新泽西地区',NULL,NULL),(5,'波士顿地区',NULL,NULL),(6,'芝加哥地区',NULL,NULL),(7,'首都华盛顿地区',NULL,NULL);
+/*!40000 ALTER TABLE `locations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `positions`
+--
+
+DROP TABLE IF EXISTS `positions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `positions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `positions`
+--
+
+LOCK TABLES `positions` WRITE;
+/*!40000 ALTER TABLE `positions` DISABLE KEYS */;
+INSERT INTO `positions` VALUES (8,NULL,NULL,'software developer'),(9,NULL,NULL,'frontend developer'),(10,NULL,NULL,'backend developer');
+/*!40000 ALTER TABLE `positions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `refer_cases`
+--
+
+DROP TABLE IF EXISTS `refer_cases`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `refer_cases` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `referrer_id` int(11) DEFAULT NULL,
+  `referral_id` int(11) DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT NULL,
+  `result` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `feedback` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_refer_cases_on_referrer_id` (`referrer_id`),
+  KEY `index_refer_cases_on_referral_id` (`referral_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `refer_cases`
+--
+
+LOCK TABLES `refer_cases` WRITE;
+/*!40000 ALTER TABLE `refer_cases` DISABLE KEYS */;
+INSERT INTO `refer_cases` VALUES (22,'面试中','2013-08-01 18:22:51','2013-08-01 22:11:17',1,3,0,NULL,NULL),(23,'准备递交简历','2013-08-01 20:57:33','2013-08-01 22:07:09',1,3,0,NULL,NULL),(24,'简历已递交','2013-08-01 21:08:37','2013-08-01 22:18:49',3,1,0,NULL,NULL),(25,'准备递交简历','2013-08-01 22:35:18','2013-08-01 22:58:23',3,1,0,NULL,NULL),(26,'准备递交简历','2013-08-01 23:13:53','2013-08-01 23:18:07',1,3,0,'被拒',3),(27,'简历已递交','2013-08-02 16:58:20','2013-08-02 16:58:42',3,1,1,NULL,NULL);
+/*!40000 ALTER TABLE `refer_cases` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `refer_posts`
+--
+
+DROP TABLE IF EXISTS `refer_posts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `refer_posts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `refer_case_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `content` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_refer_posts_on_user_id` (`user_id`),
+  KEY `index_refer_posts_on_refer_case_id` (`refer_case_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `refer_posts`
+--
+
+LOCK TABLES `refer_posts` WRITE;
+/*!40000 ALTER TABLE `refer_posts` DISABLE KEYS */;
+INSERT INTO `refer_posts` VALUES (1,27,3,'hi, this is my resume ','2013-08-02 16:59:10','2013-08-02 16:59:10'),(2,27,1,'Hi mei nv','2013-08-02 16:59:56','2013-08-02 16:59:56'),(3,27,3,'what about my rv','2013-08-02 17:00:22','2013-08-02 17:00:22');
+/*!40000 ALTER TABLE `refer_posts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `refer_requests`
+--
+
+DROP TABLE IF EXISTS `refer_requests`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `refer_requests` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `accepted` tinyint(1) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `from_id` int(11) DEFAULT NULL,
+  `to_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_refer_requests_on_from_id` (`from_id`),
+  KEY `index_refer_requests_on_to_id` (`to_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `refer_requests`
+--
+
+LOCK TABLES `refer_requests` WRITE;
+/*!40000 ALTER TABLE `refer_requests` DISABLE KEYS */;
+INSERT INTO `refer_requests` VALUES (1,'auLR_HUuR99wig6RM2n6iQ',0,'2013-07-31 02:14:47','2013-07-31 02:14:47',NULL,NULL),(2,'-YDaifHPUylPa0L1rG6WFQ',0,'2013-07-31 18:46:32','2013-07-31 18:46:32',NULL,NULL),(3,'yipBbZFkZPu80KX2KxGsjQ',0,'2013-07-31 18:47:02','2013-07-31 18:47:02',NULL,NULL),(4,'B_P7YdWehZWwLAnk6udYjA',0,'2013-07-31 22:26:30','2013-07-31 22:26:30',NULL,NULL),(5,'FDou62kguwlISJsVtgB7jg',0,'2013-08-01 18:22:11','2013-08-01 18:22:11',3,1),(6,'BXtvmBdetrF1Wu3x4YaW4Q',0,'2013-08-01 20:56:52','2013-08-01 20:56:52',3,2),(7,'Dr_iTF9x3MhMKYu4eip6iQ',0,'2013-08-01 21:07:12','2013-08-01 21:07:12',1,3),(8,'rag2E831DpwboZMTZEQs8A',0,'2013-08-01 22:34:25','2013-08-01 22:34:25',1,3),(9,'2HFfzMLFMrX1cx5q1sF6Ww',0,'2013-08-01 23:01:04','2013-08-01 23:01:04',3,1),(10,'jYyrhd1tMDKOGtkPgNeDTg',0,'2013-08-02 16:56:40','2013-08-02 16:56:40',1,3),(11,'0sAKgiS4bNYuveqYB7MxKw',0,'2013-08-07 04:00:46','2013-08-07 04:00:46',1,3),(12,'4pbcPiCWIupdOcnxmbqrhw',0,'2013-08-07 04:08:51','2013-08-07 04:08:51',1,3),(13,'4ygq6-sXoLrQioi-4vOWPw',0,'2013-08-07 04:10:46','2013-08-07 04:10:46',1,3);
+/*!40000 ALTER TABLE `refer_requests` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `schema_migrations`
+--
+
+DROP TABLE IF EXISTS `schema_migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `schema_migrations` (
+  `version` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  UNIQUE KEY `unique_schema_migrations` (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `schema_migrations`
+--
+
+LOCK TABLES `schema_migrations` WRITE;
+/*!40000 ALTER TABLE `schema_migrations` DISABLE KEYS */;
+INSERT INTO `schema_migrations` VALUES ('20130714212338'),('20130714232148'),('20130714254802'),('20130715020644'),('20130715213449'),('20130715214022'),('20130715225125'),('20130717212629'),('20130719224452'),('20130720205300'),('20130720215921'),('20130720231854'),('20130720231953'),('20130721181134'),('20130721221419'),('20130722004614'),('20130722010455'),('20130724072544'),('20130724211559'),('20130729011759'),('20130731033733'),('20130801084843'),('20130801090121'),('20130801092344'),('20130801181225'),('20130801182419'),('20130801183046'),('20130801202557'),('20130801224331'),('20130802072413'),('20130802072845'),('20130803000206'),('20130803074816'),('20130803075438'),('20130803081915'),('20130803084018'),('20130803084027'),('20130806222056'),('20130806222314'),('20130806234049'),('20130807000736'),('20130807003055'),('20130811203937'),('20130811205729'),('20130812203144'),('20130812224241'),('20130812224605'),('20130814072123'),('20130814084950'),('20130814212735'),('20130815004037'),('20130815011917'),('20130818213010'),('20130819004006'),('20130819063208');
+/*!40000 ALTER TABLE `schema_migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `us_colleges`
+--
+
+DROP TABLE IF EXISTS `us_colleges`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `us_colleges` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `state` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `us_colleges`
+--
+
+LOCK TABLES `us_colleges` WRITE;
+/*!40000 ALTER TABLE `us_colleges` DISABLE KEYS */;
+INSERT INTO `us_colleges` VALUES (1,NULL,'University of California Irvine',NULL,NULL),(2,NULL,'University of California Los Angeles',NULL,NULL),(3,NULL,'University of New Mexico',NULL,NULL),(4,NULL,'University of Florida',NULL,NULL);
+/*!40000 ALTER TABLE `us_colleges` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dept` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `position` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `encrypted_password` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `reset_password_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `reset_password_sent_at` datetime DEFAULT NULL,
+  `remember_created_at` datetime DEFAULT NULL,
+  `sign_in_count` int(11) DEFAULT '0',
+  `current_sign_in_at` datetime DEFAULT NULL,
+  `last_sign_in_at` datetime DEFAULT NULL,
+  `current_sign_in_ip` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `last_sign_in_ip` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `password_digest` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `admin` tinyint(1) DEFAULT NULL,
+  `avatar_file_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `avatar_content_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `avatar_file_size` int(11) DEFAULT NULL,
+  `avatar_updated_at` datetime DEFAULT NULL,
+  `company_id` int(11) DEFAULT NULL,
+  `location_id` int(11) DEFAULT NULL,
+  `hometown_id` int(11) DEFAULT NULL,
+  `china_school1_id` int(11) DEFAULT NULL,
+  `china_school2_id` int(11) DEFAULT NULL,
+  `us_school1_id` int(11) DEFAULT NULL,
+  `us_school2_id` int(11) DEFAULT NULL,
+  `company_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_users_on_email` (`email`),
+  UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`),
+  UNIQUE KEY `index_users_on_name` (`name`),
+  KEY `index_users_on_remember_token` (`remember_token`),
+  KEY `index_users_on_company_id` (`company_id`),
+  KEY `index_users_on_location_id` (`location_id`),
+  KEY `index_users_on_hometown_id` (`hometown_id`),
+  KEY `index_users_on_china_school1_id` (`china_school1_id`),
+  KEY `index_users_on_china_school2_id` (`china_school2_id`),
+  KEY `index_users_on_us_school1_id` (`us_school1_id`),
+  KEY `index_users_on_us_school2_id` (`us_school2_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'JoshuaY','QE','QA','2013-07-31 02:05:19','2013-08-19 01:43:46','iatbst@gmail.com','$2a$10$9jAnMHl.yDOkS7K02s2zpeUajFvYddDWzNlc76//6KCpDZjAmwgBG',NULL,NULL,NULL,29,'2013-08-19 01:43:46','2013-08-18 20:21:46','127.0.0.1','127.0.0.1',NULL,NULL,1,'profile.jpg','image/jpeg',66365,'2013-07-31 02:05:19',68,1,1,1,NULL,1,NULL,NULL),(2,'EricWu','QE','QA','2013-07-31 02:06:50','2013-08-11 23:50:11','seekrefer.eric@gmail.com','$2a$10$W1rB7hGiDeumdVyZdsoRmOQvurGK/N3W0g0b2bZ8AZ3yjtUbPaYRS',NULL,NULL,NULL,7,'2013-08-11 23:50:11','2013-08-11 21:12:42','127.0.0.1','127.0.0.1',NULL,NULL,NULL,'eric.jpg','image/jpeg',9040,'2013-07-31 02:06:50',3,2,2,2,NULL,4,NULL,NULL),(3,'JennaZ','QE','QA','2013-07-31 02:08:06','2013-08-15 00:50:43','seekrefer.jenna@gmail.com','$2a$10$C950dhrUHbKJ03ntVRnSUulBu/gLbWNtv83Hsn4ntjcIdeNkNuJyS',NULL,NULL,NULL,13,'2013-08-15 00:50:43','2013-08-11 23:52:55','127.0.0.1','127.0.0.1',NULL,NULL,NULL,'eric.png','image/png',112590,'2013-07-31 02:08:05',2,1,4,2,NULL,3,NULL,NULL),(10,'test1','test','test','2013-08-15 21:01:08','2013-08-15 21:01:09','test1@zynga.com','$2a$10$ohNoza2bEzRnHHvKMl6GROUjIXVB./4x.HNbgX4TIWq5VFops0l1m',NULL,NULL,NULL,1,'2013-08-15 21:01:09','2013-08-15 21:01:09','127.0.0.1','127.0.0.1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,59,1,1,1,NULL,1,NULL,'microsoft');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2013-08-19 10:19:24
