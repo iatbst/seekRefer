@@ -121,14 +121,14 @@
 			<td width="25%"></td>								
 			<td width="25%"><table style="float: left" cellspacing="0" cellpadding="0"> <tr> 
 <td align="center" width="60" height="30" bgcolor="#000091" style="-webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; color: #ffffff; display: block;">
-<a href="<%= url_for(controller: "connect_requests", action: "accept_request", only_path: false, :token => @token) %>" style="color: #ffffff; font-size:16px; font-weight: bold; font-family: Helvetica, Arial, sans-serif; text-decoration: none; line-height:30px; width:100%; display:inline-block">接受</a>
+<a href="<%= url_for(controller: "connects", action: "accept_request", only_path: false, :token => @token) %>" style="color: #ffffff; font-size:16px; font-weight: bold; font-family: Helvetica, Arial, sans-serif; text-decoration: none; line-height:30px; width:100%; display:inline-block">接受</a>
 </td> 
 </tr> </table></td>
 
 <td>
 <table width="25%" style="float: left" cellspacing="0" cellpadding="0"> <tr> 
 <td align="center" width="60" height="30" bgcolor="#000091" style="-webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; color: #ffffff; display: block;">
-<a href="<%= url_for(controller: "connect_requests", action: "ignore_request", only_path: false, :token => @token) %>" style="color: #ffffff; font-size:16px; font-weight: bold; font-family: Helvetica, Arial, sans-serif; text-decoration: none; line-height:30px; width:100%; display:inline-block">忽略</a>
+<a href="<%= url_for(controller: "connects", action: "ignore_request", only_path: false, :token => @token) %>" style="color: #ffffff; font-size:16px; font-weight: bold; font-family: Helvetica, Arial, sans-serif; text-decoration: none; line-height:30px; width:100%; display:inline-block">忽略</a>
 </td><td></td> 
 
 </tr> </table></td></tr></table>

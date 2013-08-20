@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130819063208) do
+ActiveRecord::Schema.define(version: 20130820043214) do
 
   create_table "china_cities", force: true do |t|
     t.string   "province"
@@ -65,6 +65,8 @@ ActiveRecord::Schema.define(version: 20130819063208) do
     t.datetime "updated_at"
     t.integer  "from_id"
     t.integer  "to_id"
+    t.string   "token"
+    t.boolean  "accepted"
   end
 
   add_index "connects", ["from_id"], name: "index_connects_on_from_id", using: :btree
@@ -118,8 +120,11 @@ ActiveRecord::Schema.define(version: 20130819063208) do
   create_table "positions", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "name_id"
     t.string   "name"
   end
+
+  add_index "positions", ["name_id"], name: "index_positions_on_name_id", using: :btree
 
   create_table "refer_cases", force: true do |t|
     t.string   "status"
@@ -166,11 +171,6 @@ ActiveRecord::Schema.define(version: 20130819063208) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "dept"
-    t.string   "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -181,8 +181,9 @@ ActiveRecord::Schema.define(version: 20130819063208) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "password_digest"
-    t.string   "remember_token"
+    t.string   "name"
+    t.string   "dept"
+    t.string   "position"
     t.boolean  "admin"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
@@ -204,8 +205,6 @@ ActiveRecord::Schema.define(version: 20130819063208) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["hometown_id"], name: "index_users_on_hometown_id", using: :btree
   add_index "users", ["location_id"], name: "index_users_on_location_id", using: :btree
-  add_index "users", ["name"], name: "index_users_on_name", unique: true, using: :btree
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["us_school1_id"], name: "index_users_on_us_school1_id", using: :btree
   add_index "users", ["us_school2_id"], name: "index_users_on_us_school2_id", using: :btree

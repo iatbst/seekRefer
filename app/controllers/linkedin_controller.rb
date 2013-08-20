@@ -93,7 +93,9 @@ class LinkedinController < ApplicationController
     
     companies["company_search"]["companies"]["company"].each do |company|
       #find the right company
-      if company["universal_name"] == company_name.downcase || company["name"].downcase == company_name.downcase 
+      if company["universal_name"] == company_name.downcase || 
+         company["name"].downcase == company_name.downcase  ||
+         company["universal_name"] == company_name.downcase + "-inc."
             
             if company["industries"]["total"] == "1"
               in_id = company["industries"]["industry"]["code"]
@@ -148,7 +150,9 @@ class LinkedinController < ApplicationController
     
     companies["company_search"]["companies"]["company"].each do |company|
       #find the right company
-      if company["universal_name"] == company_name.downcase || company["name"].downcase == company_name.downcase 
+      if company["universal_name"] == company_name.downcase || 
+         company["name"].downcase == company_name.downcase  ||
+         company["universal_name"] == company_name.downcase + "-inc."
             
             if company["industries"]["total"] == "1"
               in_id = company["industries"]["industry"]["code"]

@@ -53,7 +53,16 @@
       				<%= user.china_school1.name %></br>
       				<%= user.us_school1.name %>
       		</div>  
-      		<div class="span2"><%= link_to "加为联系人", controller:"connect_requests", action:"send_request", id:user.id %></div>
+      		<% if_connect = ConnectsController.if_connected(current_user.id, user.id) if not current_user.nil? %>
+      		<% if current_user.nil? || if_connect == 0%>
+      			<div class="span2"><%= link_to "加为联系人", controller:"connects", action:"send_request", id:user.id %></div>
+      		<% elsif if_connect == 1%>
+      			<div class="span2"><%= link_to "联系请求已发送", "#" %></div>
+      		<% else %>
+      			<div class="span2"><%= link_to "留言", "#" %></br>
+      							   <%= link_to "refer我", "#" %>
+      			</div>
+      		<% end %>
     	</div>
     </div>
    

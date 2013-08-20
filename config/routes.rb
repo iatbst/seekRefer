@@ -20,12 +20,12 @@ SeekRefer::Application.routes.draw do
   #match '/signout', to: 'sessions#destroy', via: 'delete'
   
   #email to user
-  get 'connect_request/send_request/:id' => 'connect_requests#send_request'
-  get 'connect_request/accept_request' => 'connect_requests#accept_request'
-  get 'connect_request/ignore_request' => 'connect_requests#ignore_request'
-  get 'connect_request/disconnect/:id' => 'connect_requests#disconnect'
+  get 'connects/send_request/:id' => 'connects#send_request'
+  get 'connects/accept_request' => 'connects#accept_request'
+  get 'connects/ignore_request' => 'connects#ignore_request'
+  get 'connects/disconnect/:id' => 'connects#disconnect'
   post 'users/create' => 'users#create'
-  get 'connections' => 'connections#index'
+  get 'connects' => 'connects#index'
 
   
   get 'refer_requests/send_request' => 'refer_requests#send_request'

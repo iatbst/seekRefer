@@ -23,14 +23,14 @@ jQuery(document).ready(function($) {
 
   <% @users.each do |user| %>
     <tr>
-    	  <td><%= image_tag user.avatar.url(:thumb) %></td>
+    	  <td><%= image_tag user.avatar.url(:small) %></td>
       <td><%= user.name %></td>
       <td><%= user.company.name %></td>
       <td><%= user.dept %></td>
       <td><%= user.position %></td>
       <td><%= user.email %></td>
       <td><%= link_to '求推荐', {controller:"refer_requests", action:"send_request", id:user.id}, :rel => "facebox" %></td>
-      <td><%= link_to '删除联系人', controller:"connect_requests", action:"disconnect", id:user.id, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to '删除联系人', controller:"connects", action:"disconnect", id:user.id, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
 </table>
