@@ -47,12 +47,13 @@
   	<div class="container">
 	 <div class="row-fluid">
       		<div class="span2"><%= image_tag user.avatar.url(:small) %></div>
-      		<div class="span10"><strong><%= link_to user.name, user_path(user) %></strong></br>
+      		<div class="span8"><strong><%= link_to user.name, user_path(user) %></strong></br>
       				部门:<%= user.dept %>&nbsp;&nbsp;职位:<%= user.position %></br>
       				<%= user.hometown.province %></br>
       				<%= user.china_school1.name %></br>
       				<%= user.us_school1.name %>
       		</div>  
+      		<div class="span2"><%= link_to "加为联系人", controller:"connect_requests", action:"send_request", id:user.id %></div>
     	</div>
     </div>
    

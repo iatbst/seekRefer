@@ -57,14 +57,30 @@ class LinkedinController < ApplicationController
   
   end
   
-  # save single company by company name 
-  def get_company(company_name)
-    #company_name = 'zynga'
+  # job search
+  def get_jobs_by_company
+    company_name = 'zynga'
     company_name_ = company_name.gsub(" ", "%20")
     prepare_token
-    #api = 'https://api.linkedin.com/v1/companies/1337:(id,name,universal-name,website-url,industries,description,logo-url,employee-count-range)'
+    
+    api = 'https://api.linkedin.com/v1/job-search:(jobs:(id,active,company:(id,name),position,posting-date))?count=20&sort=DD&company-name=' + company_name_
+    #api = 'https://api.linkedin.com/v1/company-search:(companies:(id,name,universal-name,website-url,industries,description,logo-url,employee-count-range,specialties,founded-year,locations))?count=20&keywords=' + company_name_
+    
+    @response = @access_token.get(api)
+    
+    puts @response.body
+    
+  end
+  
+  
+  # save single company by company name 
+  def get_company(company_name)
+    
+    company_name_ = company_name.gsub(" ", "%20")
+    prepare_token
+    
     api = 'https://api.linkedin.com/v1/company-search:(companies:(id,name,universal-name,website-url,industries,description,logo-url,employee-count-range,specialties,founded-year,locations))?count=20&keywords=' + company_name_
-    #api = 'https://api.linkedin.com/v1/companies/1337:(id,name,ticker,description)'   
+    
     @response = @access_token.get(api)
     
     puts @response.body

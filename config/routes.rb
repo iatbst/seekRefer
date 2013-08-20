@@ -52,6 +52,7 @@ SeekRefer::Application.routes.draw do
   get 'linkedin/get_company' => 'linkedin#get_company'
   get 'linkedin/new' => 'linkedin#new'
   post 'linkedin/create' => 'linkedin#create'
+  get 'linkedin/get_jobs_by_company' => 'linkedin#get_jobs_by_company'
  
  
   

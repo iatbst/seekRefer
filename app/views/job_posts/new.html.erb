@@ -3,7 +3,7 @@
 <%= form_for :job_post, url: job_posts_path do |f| %>
  	  
  	  <%= f.label :industry_id ,"领域"%>
- 	  <%= f.select(:industry_id, Industry.all.map {|h| [h.name, h.id]},{:prompt => "选择领域"},{:class => 'selectpicker'}) %> 
+ 	  <%= f.select(:industry_id, Industry.all.map {|h| [h.name_cn, h.id]},{:prompt => "选择领域"},{:class => 'selectpicker'}) %> 
   	  
   	  <%= f.label :location_id ,"地区"%>
  	  <%= f.select(:location_id, Location.all.map {|h| [h.name, h.id]},{:prompt => "选择地区"},{:class => 'selectpicker'}) %>
