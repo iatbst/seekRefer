@@ -1,36 +1,33 @@
-<script type="text/javascript">
-
-
-jQuery(document).ready(function($) {
-  $('a[rel*=facebox]').facebox()
-  $('#facebox .body').width('1000px');
-})
-
-</script>
-
 <table class="table table-hover">
-  <tr>
-  	<th></th>
-    <th>用户名</th>
-    <th>公司</th>
-    <th>部门</th>
-    <th>职位</th>
-    <th>邮箱</th>
-    <th></th>
-    
-    <th></th>
-  </tr>
-
+ 
   <% @users.each do |user| %>
-    <tr>
-    	  <td><%= image_tag user.avatar.url(:small) %></td>
-      <td><%= user.name %></td>
-      <td><%= user.company.name %></td>
-      <td><%= user.dept %></td>
-      <td><%= user.position %></td>
-      <td><%= user.email %></td>
-      <td><%= link_to '求推荐', {controller:"refer_requests", action:"send_request", id:user.id}, :rel => "facebox" %></td>
-      <td><%= link_to '删除联系人', controller:"connects", action:"disconnect", id:user.id, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
+  <tr><td>
+  	<div class="container">
+	 <div class="row-fluid">
+      		<div class="span2"><%= image_tag user.avatar.url(:small) %></div>
+      		<div class="span8"><strong><%= link_to user.name, user_path(user) %></strong></br>
+      				部门:<%= user.dept %>&nbsp;&nbsp;职位:<%= user.position %></br>
+      				<%= user.hometown.province %></br>
+      				<%= user.china_school1.name %></br>
+      				<%= user.us_school1.name %>
+      		</div>  
+      		<% if_connect = ConnectsController.if_connected(current_user.id, user.id) if not current_user.nil? %>
+      		<% if current_user.nil? || if_connect == 0%>
+      			<div class="span2"><%= link_to "加为联系人", controller:"connects", action:"send_request", id:user.id %></div>
+      		<% elsif if_connect == 1%>
+      			<div class="span2"><%= link_to "联系请求已发送", "#" %></div>
+      		<% else %>
+      			<div class="span2"></br><br>
+      		    <a href="#message_popup" role="button" class="btn" data-toggle="modal">留言</a></br></br>
+      			<a href="#refer_request_popup" role="button" class="btn" data-toggle="modal">请求Refer</a>
+      			<%= render 'shared/refer_request_popup', :user => user %>
+      			</div>
+      		<% end %>
+    	</div>
+    </div>
+   
+    </td></tr>
+
   <% end %>
 </table>
+

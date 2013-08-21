@@ -1,3 +1,5 @@
+
+
 <table class="table table-hover">
   <tr><td>
   	<div class="container">
@@ -59,8 +61,10 @@
       		<% elsif if_connect == 1%>
       			<div class="span2"><%= link_to "联系请求已发送", "#" %></div>
       		<% else %>
-      			<div class="span2"><%= link_to "留言", "#" %></br>
-      							   <%= link_to "refer我", "#" %>
+      			<div class="span2"></br><br>
+      		    <a href="#message_popup" role="button" class="btn" data-toggle="modal">留言</a></br></br>
+      			<a href="#refer_request_popup" role="button" class="btn" data-toggle="modal">请求Refer</a>
+      			<%= render 'shared/refer_request_popup', :user => user %>
       			</div>
       		<% end %>
     	</div>
