@@ -16,18 +16,18 @@ p.company_name span {
 
 
 
-#refer_request_popup .modal-body {
+.modal .modal-body {
   height: 500px;
   max-height: 700px;
 }
 
 
 
-#refer_request_popup {
+body .modal {
+  width: 1000px;
   top: 50%;
   //left: 50%;
   position: fixed;
   border: 1px solid #cdc4b2;
-  width: 1000px; /* SET THE WIDTH OF THE MODAL */
-  margin: -150px 0 0 -530px; /* CHANGE MARGINS TO ACCOMODATE THE NEW WIDTH (original = margin: -250px 0 0 -280px;) */
+  margin: -200px 0 0 -530px; /* CHANGE MARGINS TO ACCOMODATE THE NEW WIDTH (original = margin: -250px 0 0 -280px;) */
 }

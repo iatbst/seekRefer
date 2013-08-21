@@ -63,8 +63,8 @@
       		<% else %>
       			<div class="span2"></br><br>
       		    <a href="#message_popup" role="button" class="btn" data-toggle="modal">留言</a></br></br>
-      			<a href="#refer_request_popup" role="button" class="btn" data-toggle="modal">请求Refer</a>
-      			<%= render 'shared/refer_request_popup', :user => user %>
+      			<a href="#refer_request_popup<%=user.id%>" role="button" class="btn" data-toggle="modal">请求Refer</a>
+      			<%= render 'shared/refer_request_popup', :to => user %>
       			</div>
       		<% end %>
     	</div>

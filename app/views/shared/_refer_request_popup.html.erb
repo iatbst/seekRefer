@@ -1,4 +1,4 @@
-<div id="refer_request_popup" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="refer_request_popup<%=to.id%>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 			&times;
@@ -7,21 +7,29 @@
 	</div>
 	<div class="modal-body">
 		<div class="container">
+			<% if ReferRequestsController.ok_to_send(current_user.id, to.id) %>
 			<div class="span8 offset2">
-				<%= simple_form_for :refer_request, url:refer_requests_recv_request_path  do |f| %>
+				<%= form_for :refer_request, url:refer_requests_recv_request_path  do |f| %>
 
-				<%= hidden_field_tag :id, user.id %>
+				<%= hidden_field_tag :id, to.id %>
 
 				<%= f.label :intro, "介绍自己"%>
 				<%= f.text_area :intro, :autofocus => true, :rows => "6" %>
 
+				
 				<div>
+					使用已经上传的简历<%= f.check_box :old_resume %>
 					<%= f.label :resume, "上传简历"%>
 					<%= f.file_field :resume %>
 				</div>
 				<%= f.submit "发送请求", class: "btn btn-primary" %>
 				<% end %>
 			</div>
+			<% else %>
+			<div class="span8 offset2">
+				<h1>在最近的三个月内您已经发送过Ｒefer请求了！！！</h1>
+			</div>
+			<% end %>
 		</div>
 	</div>
 	<div class="modal-footer">
@@ -29,13 +37,4 @@
 	</div>
 </div>
 
-<script>
-	   $('#refer_request_popup').modal().css(
-            {
-                'margin-top': function () {
-                    return window.pageYOffset-($(this).height() / 2 );
-                }
-            });
 
-                   
-</script>
