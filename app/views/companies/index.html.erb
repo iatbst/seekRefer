@@ -10,33 +10,23 @@
 	 <div class="row-fluid">
       		<div class="span2"><%= image_tag company.logo.url %></div>
       		<div class="span10"><strong><%= link_to company.name, company_path(company) %></strong></br>
-      				<%= company.industry.name_cn %></br>
-      				<%= company.founded_year %>年成立&nbsp;&nbsp;<%= company.employee_count_range %>员工</br>
-      				<%= link_to company.website, company.website,:target => '_blank' %>
+      				<%= company.industry.name_cn %>&nbsp;|&nbsp;
+      				成立于<%= company.founded_year %>&nbsp;|&nbsp;<%= company.employee_count_range %>员工</br>
+      				
+      				<% if not company.tags.nil? %>
+      					<% tags = company.tags.gsub('"', '').gsub('[', '').gsub(']', '')  %>
+   					<% else %>
+   						<% tags = company.industry.name %>
+   					<% end %>
+   					<span class="tags"><%= tags %></span></br>
+   					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#company<%= company.id %>">
+					关于</a>
+		 <div id="company<%= company.id %>" class="collapse"><p><%= company.description %></p></div>
       		</div>  
     	</div>
     </div>
     
-    <div class="container">
-    	<div class="row">
-    		<div class="span1 offset1"></div>
-    		<% tags = company.tags.gsub('"', '').gsub('[', '').gsub(']', '') if not company.tags.nil? %>
-    		
-    		
-    		<div class="span10"><p class="tags"><span><%= tags %></span></p></div>
-    	</div>
-    </div>
-    
-    <div class="container">
-    	<div class="row">
-    	<div class="span2"></div>
-    	<div class="span10">
-    	 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#company<%= company.id %>">
-			关于		 </a>
-		 <div id="company<%= company.id %>" class="collapse"><p><%= company.description %></p></div>
-      </div>
-      </div>
-     </div>
+   
      
    
     </td></tr>

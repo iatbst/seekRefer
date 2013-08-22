@@ -1,3 +1,23 @@
 // Place all the styles related to the refer_requests controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+
+
+.modal .modal-body {
+  height: 500px;
+  max-height: 700px;
+}
+
+
+
+body .modal {
+  width: 800px;
+  top: 50%;
+//  left: 50%;
+  position: fixed;
+  border: 1px solid #cdc4b2;
+  margin: -200px 0 0 -530px; /* CHANGE MARGINS TO ACCOMODATE THE NEW WIDTH (original = margin: -250px 0 0 -280px;) */
+}

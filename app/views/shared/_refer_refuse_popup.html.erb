@@ -1,0 +1,47 @@
+
+<div id="refer_refuse_popup" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+			&times;
+		</button>
+		<h3></h3>
+	</div>
+	<div class="modal-body">
+		<div class="container-fluid">
+				<%= form_for :refer_refuse, url:refer_request_refuse_request_path  do |f| %>
+
+				<%= hidden_field_tag :token, token %>
+
+				<%= f.label :reason, "原因"%>
+				<%= f.text_area :reason, :autofocus => true, :rows => "３" %>
+
+				
+			
+				<%= f.submit "回复", class: "btn btn-primary" %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+				
+	</div>
+</div>
+
+
+<script>
+
+$('.modal').css(
+            {
+                'margin-top': function () {
+                    return window.pageYOffset-($(this).height() / 2 );
+                },
+                
+                'margin-left': function () {
+                    return window.pageXOffset-($(this).width() / 2 );
+                },
+
+                
+            });
+
+
+</script>

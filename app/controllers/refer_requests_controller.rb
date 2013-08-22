@@ -51,6 +51,7 @@ class ReferRequestsController < ApplicationController
     # not accepted yet, accept and save relation to database
     if (request = ReferRequest.find_by_token(params[:token]) )
       @applicant = request.from
+      @token = params[:token]
       # check if resume in user folder
       if not File.exists? Rails.root.join('public', 'users', @applicant.name, "resume.pdf")
         @message = "Woops, 她/他的简历不在服务器上面 !!!"
@@ -102,6 +103,10 @@ class ReferRequestsController < ApplicationController
     end
     
     render 'shared/error.html.erb', :message => @message
+  end
+  
+  def refuse_request
+    
   end
   
   # check out if current user could send refer request or not, depend on when the last request was sent
