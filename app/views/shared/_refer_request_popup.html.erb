@@ -1,3 +1,4 @@
+
 <div id="refer_request_popup<%=to.id%>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -6,7 +7,7 @@
 		<h3></h3>
 	</div>
 	<div class="modal-body">
-		<div class="container">
+		<div class="container-fluid">
 			<% if ReferRequestsController.ok_to_send(current_user.id, to.id) %>
 			<div class="span8 offset2">
 				<%= form_for :refer_request, url:refer_requests_recv_request_path  do |f| %>
@@ -22,7 +23,7 @@
 					<%= f.label :resume, "上传简历"%>
 					<%= f.file_field :resume %>
 				</div>
-				<%= f.submit "发送请求", class: "btn btn-primary" %>
+					<%= f.submit "发送请求", class: "btn btn-primary" %>
 				<% end %>
 			</div>
 			<% else %>
@@ -33,8 +34,25 @@
 		</div>
 	</div>
 	<div class="modal-footer">
-
+				
 	</div>
 </div>
 
 
+<script>
+
+$('.modal').css(
+            {
+                'margin-top': function () {
+                    return window.pageYOffset-($(this).height() / 2 );
+                },
+                
+                'margin-left': function () {
+                    return window.pageXOffset-($(this).width() / 2 );
+                },
+
+                
+            });
+
+
+</script>

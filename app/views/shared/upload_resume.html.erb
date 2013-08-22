@@ -1,0 +1,17 @@
+
+		<div class="container-fluid">
+			<div class="span8 offset2">
+				<%= form_for :upload_resume, url:refer_request_save_resume_path  do |f| %>
+
+				<%= hidden_field_tag :id, current_user.id %>
+				<div>
+					<%= f.label :resume, "上传简历"%>
+					<%= f.file_field :resume %>
+				</div>
+					<%= f.submit "上传/更新", class: "btn btn-primary" %>
+				<% end %>
+			</div>
+		</div>
+
+
+

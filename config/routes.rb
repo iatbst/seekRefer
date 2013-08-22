@@ -32,6 +32,8 @@ SeekRefer::Application.routes.draw do
   post 'refer_requests/recv_request' => 'refer_requests#recv_request'
   get 'refer_request/view_profile' => 'refer_requests#view_profile'
   get 'refer_request/ignore_request' => 'refer_requests#ignore_request'
+  get 'refer_request/upload_resume' => 'refer_requests#upload_resume'
+  post 'refer_request/save_resume' => 'refer_requests#save_resume'
   
   #refer case
   get 'refer_cases/show_referrer' => 'refer_cases#show_referrer'
