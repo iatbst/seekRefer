@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130820043214) do
+ActiveRecord::Schema.define(version: 20130823000350) do
 
   create_table "china_cities", force: true do |t|
     t.string   "province"
@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(version: 20130820043214) do
     t.boolean  "is_active"
     t.string   "result"
     t.integer  "feedback"
+    t.integer  "status_id"
   end
 
   add_index "refer_cases", ["referral_id"], name: "index_refer_cases_on_referral_id", using: :btree

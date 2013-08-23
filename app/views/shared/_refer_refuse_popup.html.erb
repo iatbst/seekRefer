@@ -8,13 +8,12 @@
 	</div>
 	<div class="modal-body">
 		<div class="container-fluid">
-				<%= form_for :refer_refuse, url:refer_request_refuse_request_path  do |f| %>
+				<%= simple_form_for :refer_refuse, url:refer_request_refuse_request_path  do |f| %>
 
 				<%= hidden_field_tag :token, token %>
-
-				<%= f.label :reason, "原因"%>
-				<%= f.text_area :reason, :autofocus => true, :rows => "３" %>
-
+				<%= f.input :reason, label: "说点儿什么吧", required: false, as: :text, autofocus: true, rows: "6"%>
+				
+				<%= f.input :reason_opt, label: "原因", prompt: "原因选择", collection: ["目前没有opening","目前opening和您的背景不匹配" ]%>
 				
 			
 				<%= f.submit "回复", class: "btn btn-primary" %>

@@ -36,9 +36,21 @@ class ReferCasesController < ApplicationController
   # update case status
   def update
     @case = ReferCase.find(params[:id])
-    @status = params["refer_case"][:status]
-    @case.update(status: params["refer_case"][:status])
-    redirect_to action: "edit", id: @case.id, referrer: params[:referrer]
+    status = params["refer_case"][:status]
+    case status
+    when "准备递交简历"
+      status_id = 1
+    when "简历已递交"
+      status_id = 2
+    when "HR已联系"
+      status_id = 3
+    when "面试中"
+      status_id = 4
+    when "通知面试结果"
+      status_id = 5
+    end
+    @case.update(status: status, status_id: status_id)
+    redirect_to :back
   end
   
   # close dialog popup and give feedback to referrer

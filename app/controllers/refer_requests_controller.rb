@@ -105,8 +105,19 @@ class ReferRequestsController < ApplicationController
     render 'shared/error.html.erb', :message => @message
   end
   
+  # How to handle refuse refer request
   def refuse_request
+    request = ReferRequest.find_by_token(params[:token])
+    to = request.from
+    from = request.to
+    reason_message = params[:refer_refuse][:reason]
+    reason_opt_message = params[:refer_refuse][:reason_opt]
+    message = reason_opt_message + "\n" + reason_message
     
+    #send email back to applicant
+    GeneralMailer.general_email(to, from, "您收到Refer请求回复!", message ).deliver
+    
+    redirect_to root_path
   end
   
   # check out if current user could send refer request or not, depend on when the last request was sent
