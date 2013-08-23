@@ -24,7 +24,7 @@
 <br />
 <br />
 <br />
-<%= link_to "愿意推荐", {controller: "refer_cases", action: "create", id: @applicant}, class: "btn btn-primary"%>
+<%= link_to "愿意推荐", {controller: "refer_cases", action: "create", :token => @token}, :disable_with => "请等待", class: "btn btn-primary"%>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="#refer_refuse_popup" role="button" class="btn btn-primary" data-toggle="modal">拒绝推荐</a>
 <%= render 'shared/refer_refuse_popup', :token => @token %>

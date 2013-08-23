@@ -39,7 +39,7 @@ SeekRefer::Application.routes.draw do
   #refer case
   get 'refer_cases/show_referrer' => 'refer_cases#show_referrer'
   get 'refer_cases/show_referral' => 'refer_cases#show_referral'
-  get 'refer_cases/create/:id' => 'refer_cases#create'
+  get 'refer_cases/create' => 'refer_cases#create'
   get 'refer_cases/edit' => 'refer_cases#edit'
   patch 'refer_cases/destroy' => 'refer_cases#destroy'
   patch 'refer_cases/update' => 'refer_cases#update'

@@ -6,6 +6,6 @@ class ReferPostsController < ApplicationController
     @post = ReferPost.new(content: content, user_id: current_user.id, refer_case_id: params[:refer_case_id])
     @post.save
     
-    redirect_to controller: "refer_cases", action: "edit", id: params[:refer_case_id], referrer: params[:referrer]
+    redirect_to :back
   end
 end

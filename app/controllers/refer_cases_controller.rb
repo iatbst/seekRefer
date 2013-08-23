@@ -2,10 +2,24 @@ class ReferCasesController < ApplicationController
   before_filter :authenticate_user!
   
   def create
-    referral = User.find(params[:id])
+    request = ReferRequest.find_by_token(params[:token])
+    #　no refer request record in DB
+    if request.nil?
+      @message = "相关refer请求已经过期!!!"
+      render 'shared/error.html.erb', :message => @message and return 
+    end
+    # repeated acceptance 
+    if request.accepted 
+      @message = "您已经接受了该refer请求!!!"
+      render 'shared/error.html.erb', :message => @message and return      
+    end
+    request.accepted = true
+    request.save
+    
+    referral = request.from
     #@case = ReferCase.new(referrer_id: current_user.id, referral_id: referral.id, status:"准备递交简历")
     #@case.save
-    @case = current_user.referrer_cases.create(referral_id: referral.id, status:"准备递交简历", is_active: true)
+    @case = current_user.referrer_cases.create(referral_id: referral.id, status_id: 1, status:"准备递交简历", is_active: true)
     redirect_to refer_cases_show_referrer_path
   end
   
