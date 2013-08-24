@@ -23,16 +23,26 @@ class ReferCasesController < ApplicationController
     redirect_to refer_cases_show_referrer_path
   end
   
-  #show all cases in which current user is referrer
+  #show all cases in which current user is referrer, which are active now
   def show_referrer
     #@cases = ReferCase.all(:conditions => "referrer_id = '#{current_user.id}'")
     @cases = current_user.referrer_cases.where(is_active: true)
+  end
+  
+  #show all old cases which are already closed
+  def show_referrer_old
+    @cases = current_user.referrer_cases.where(is_active: false)
   end
   
   #show all cases in which current user is referral
   def show_referral
     #@cases = ReferCase.all(:conditions => "referral_id = '#{current_user.id}'")
     @cases = current_user.referral_cases.where(is_active: true)
+  end
+  
+  #show all old cases which are already closed
+  def show_referral_old
+    @cases = current_user.referral_cases.where(is_active: false)
   end
   
   def edit

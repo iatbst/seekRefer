@@ -1,8 +1,8 @@
 <ul class="nav nav-tabs">
-	<li class="active">
+	<li>
 		<%= link_to "当前Cases", refer_cases_show_referrer_path %>
 	</li>
-	<li>
+	<li class="active">
 		<%= link_to "历史Cases", refer_cases_show_referrer_old_path %>
 	</li>
 </ul>
@@ -19,25 +19,7 @@
 					<%= link_to refer_case.referral.name, user_path(refer_case.referral) %>
 				</div>
 				<div class="span8">
-
-					<div class="progress progress-striped">
-						<div class="bar" style="width: <%= refer_case.status_id*20 %>%;"></div>
-					</div></br>
-					<%= refer_case.status %>
-				</div>
-
-				<div class="span2">
-					<% if refer_case.status_id <= 2 %>
-					<%= simple_form_for refer_case, :url => {:action => 'update'} do |f| %>
-
-					<%= f.select :status, ["准备递交简历", "简历已递交"],{} %>
-
-					<%= hidden_field_tag :id, refer_case.id %>
-					<%= submit_tag "更新状态", class: "btn btn-primary", :disable_with => "Please wait..."  %>
-					<% end %>
-					<% end %>
-
-					<%= link_to "关闭", "#" %>
+					<%= refer_case.result %>
 				</div>
 			</div>
 			<div class="row-fluid">
